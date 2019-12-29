@@ -1,4 +1,6 @@
 const userService = require('../services/user.service');
+const mailConfirmationService = require('../services/mailConfirmation.service');
+
 exports.login = (req, res, next) => {
 
     userService.authenticate(req.body)
@@ -35,6 +37,18 @@ exports.login = (req, res, next) => {
 
   exports.delete = (req, res, next) => {
       userService.delete(req.params.id)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };
+
+  exports.delete = (req, res, next) => {
+      userService.delete(req.params.id)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };
+
+  exports.confirmSellerEmail = (req, res, next) => {
+      mailConfirmationService.sellerEmail(req.body)
           .then(()=> res.json({}))
           .catch(err => next(err));
   };
