@@ -4,17 +4,16 @@ const mongoose = require('mongoose');
 const sellersProfileSchema = new mongoose.Schema({
     companyName : String,
     businessType: String,
+    membershipNumber: { type: String },
     picture: [],
     description: String,
-    managerName : String,
     telNumber : Number,
     country: String,
     email : String,
     website : String,
     twitter : String,
-    facebook : String,
     instagram : String,
-    mainProducts: [{item: String}],
+    mainProducts: String,
     totalAnnualRevenue: Number,
     totalEmployees: Number,
     yearEstablished: Number,
@@ -29,7 +28,8 @@ const sellersProfileSchema = new mongoose.Schema({
       certName: String,
       certifiedBY: String,
       businessScope: String
-    }]
+    }],
+    productCertificationSummary: String
 
 });
 

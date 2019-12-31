@@ -3,7 +3,7 @@ const sellersProfileService = require("../services/SellersProfile.service");
 
 exports.create = (req, res, next) => {
     sellersProfileService.create(req.body)
-        .then(seller => seller ?  res.status(200).json({ message: 'New Seller Added' }): res.status(409).json({ message: 'Seller Exists' }))
+        .then(seller => seller ?  res.json(seller): res.status(409).json({ message: 'Seller Exists' }))
         .catch(err => next(err));
 };
 
