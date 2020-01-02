@@ -5,8 +5,12 @@ const sellersProfileSchema = new mongoose.Schema({
     companyName : String,
     businessType: String,
     membershipNumber: { type: String },
-    picture: [],
-    description: String,
+    companyPictures: {
+      picOne: {name: '', url: ''},
+      picTwo: {name: '', url: ''},
+      picThree: {name: '', url: ''}
+    },
+    companyDescription: String,
     telNumber : Number,
     country: String,
     email : String,
@@ -18,13 +22,13 @@ const sellersProfileSchema = new mongoose.Schema({
     totalEmployees: Number,
     yearEstablished: Number,
     businessCapacity: [{
-      image: [],
+      image: {name: String, url: String},
       title: String,
       description: String
     }],
     certification: [],
     productCertification: [{
-      image: String,
+      image: {name: String, url: String},
       certName: String,
       certifiedBY: String,
       businessScope: String
