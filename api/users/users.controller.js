@@ -52,3 +52,9 @@ exports.login = (req, res, next) => {
           .then(()=> res.json({}))
           .catch(err => next(err));
   };
+
+  exports.confirmBuyerEmail = (req, res, next) => {
+      mailConfirmationService.buyerEmail(req.body)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };

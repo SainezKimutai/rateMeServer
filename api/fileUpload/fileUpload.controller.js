@@ -40,3 +40,28 @@ exports.removeCompanyPics = (req, res, next) => {
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
+
+
+exports.uploadBuyersPics = (req, res, next) => {
+  fileUploadService.uploadBuyersPics(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.removeBuyersPics = (req, res, next) => {
+  fileUploadService.removeBuyersPics(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}
+
+exports.uploadProductImage = (req, res, next) => {
+  fileUploadService.uploadProductImage(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.removeProductImage = (req, res, next) => {
+  fileUploadService.removeProductImage(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}

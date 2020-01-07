@@ -26,12 +26,6 @@ async function getOne(_id) {
 }
 
 
-async function getByName(sellerParam) {
-    return await SellersProfile.findOne({ email: sellerParam });
-}
-
-
-
 async function update(id, sellerParam) {
     let seller = await SellersProfile.findById(id);
 
@@ -52,4 +46,4 @@ async function _delete(id) {
     await SellersProfile.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, getByName, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, delete: _delete };

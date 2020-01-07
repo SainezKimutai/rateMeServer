@@ -1,4 +1,4 @@
-const sellersProfileService = require("../services/SellersProfile.service");
+const sellersProfileService = require("../services/sellersProfile.service");
 
 
 exports.create = (req, res, next) => {
@@ -18,12 +18,6 @@ exports.getAll = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     sellersProfileService.getOne(req.params.id)
         .then(seller => seller ? res.json(seller): res.sendStatus(404))
-        .catch(err => next(err));
-};
-
-exports.getByName = (req, res, next) => {
-    sellersProfileService.getByName(req.params.name)
-        .then(seller => seller ? res.json(seller):  res.status(401).json({ message: 'No seller'}))
         .catch(err => next(err));
 };
 

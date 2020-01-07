@@ -10,5 +10,6 @@ router.post('/register', controller.create);
 router.put('/update/:id', controller.update);
 router.delete('/delete/:id', controller.delete);
 router.post('/confirmSellerEmail', controller.confirmSellerEmail);
+router.post('/confirmBuyerEmail', controller.confirmBuyerEmail);
 
 module.exports = router;
