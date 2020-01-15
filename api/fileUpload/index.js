@@ -18,4 +18,7 @@ router.delete('/removeBuyersPics/:name', controller.removeBuyersPics);
 router.post('/uploadProductImage', controller.uploadProductImage);
 router.delete('/removeProductImage/:name', controller.removeProductImage);
 
+router.post('/uploadMessageImage', controller.uploadMessageImage);
+router.delete('/removeMessageImage/:name', controller.removeMessageImage);
+
 module.exports = router;

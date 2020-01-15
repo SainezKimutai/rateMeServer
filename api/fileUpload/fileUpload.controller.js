@@ -65,3 +65,15 @@ exports.removeProductImage = (req, res, next) => {
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
+
+exports.uploadMessageImage = (req, res, next) => {
+  fileUploadService.uploadMessageImage(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.removeMessageImage = (req, res, next) => {
+  fileUploadService.removeMessageImage(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}
