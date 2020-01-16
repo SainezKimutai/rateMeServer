@@ -43,12 +43,14 @@ function sellerEmail(reqParam){
 function buyerEmail(reqParam){
     return new Promise((resolve, reject)=>{
 
-        let options = {
-            auth: {
-                api_user: 'SainezKimutai', // Sendgrid username
-                api_key: 'saineZ@13' // Sendgrid password
-            }
-        }
+      let options = {
+          host: "smtp.gmail.com",
+          port: 465,
+          auth: {
+              user: 'muindegeofrey@gmail.com',
+              pass: 'Gracemakau2019'
+          }
+      }
 
         let transporter = nodemailer.createTransport(sgTransport(options));
 
