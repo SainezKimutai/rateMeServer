@@ -25,7 +25,7 @@ function sellerEmail(reqParam){
               '<div style="font-size: 12px; margin-bottom: 20px;">Please confirm your email by clicking the button below.</div>' +
               '<div style="margin-bottom: 20px;">'+
                   '<a style="font-size: 13px; background-color: #4ec293; border-radius: 2px; color: white; border: none; cursor: pointer; padding: 8px;" '+
-                  'href="http://localhost:4200/seller_registration/' + reqParam.reciever + '/' + reqParam.token + '">Confirm Email</a>'+
+                  'href="http://64.227.8.69:3000/seller_registration/' + reqParam.reciever + '/' + reqParam.token + '">Confirm Email</a>'+
               '</div>'+
               '<div style="font-size: 10px; font-style: italic;">www.tijaraafrica.com</div>'+
             '</section>'
@@ -63,7 +63,7 @@ function buyerEmail(reqParam){
               '<div style="font-size: 12px; margin-bottom: 20px;">Please confirm your email by clicking the button below.</div>' +
               '<div style="margin-bottom: 20px;">'+
                   '<a style="font-size: 13px; background-color: #2ebccd; border-radius: 2px; color: white; border: none; cursor: pointer; padding: 8px;" '+
-                  'href="http://localhost:4200/buyer_registration/' + reqParam.reciever + '/' + reqParam.token + '">Confirm Email</a>'+
+                  'href="http://64.227.8.69:3000/buyer_registration/' + reqParam.reciever + '/' + reqParam.token + '">Confirm Email</a>'+
               '</div>'+
               '<div style="font-size: 10px; font-style: italic;">www.tijaraafrica.com</div>'+
             '</section>'
