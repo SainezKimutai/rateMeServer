@@ -1,4 +1,4 @@
-const Receipt = require("../Receipt/Receipt.model.js").Receipt;
+const Receipt = require("../receipt/receipt.model.js").Receipt;
 
 
 async function create(receiptParam){
