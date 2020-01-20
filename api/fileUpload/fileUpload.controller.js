@@ -77,3 +77,16 @@ exports.removeMessageImage = (req, res, next) => {
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
+
+
+exports.uploadSignatures = (req, res, next) => {
+  fileUploadService.uploadSignatures(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.removeSignatures = (req, res, next) => {
+  fileUploadService.removeSignatures(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}

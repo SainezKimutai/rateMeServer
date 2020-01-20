@@ -5,7 +5,7 @@ const messagingSchema = new mongoose.Schema({
   sentBy: String,
   inboxTo: String,
   message: String,
-  attachmentType: String,
+  attachmentType: { type: String, enum: ['none', 'invoice', 'quotation', 'purchaseOrder', 'quotation', 'receipt', 'rfq'] },
   attachment: String,
   createdOn: Date
 });

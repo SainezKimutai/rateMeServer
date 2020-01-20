@@ -11,5 +11,8 @@ router.put('/update/:id', controller.update);
 router.delete('/delete/:id', controller.delete);
 router.post('/confirmSellerEmail', controller.confirmSellerEmail);
 router.post('/confirmBuyerEmail', controller.confirmBuyerEmail);
+router.post('/inviteAdmin', controller.inviteAdmin);
+router.post('/inviteThirdParty', controller.inviteThirdParty);
+router.post('/inviteServiceProvider', controller.inviteServiceProvider);
 
 module.exports = router;

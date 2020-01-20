@@ -1,5 +1,6 @@
 const userService = require('../services/user.service');
 const mailConfirmationService = require('../services/mailConfirmation.service');
+const mailInvitationService = require('../services/mailInvitation.service');
 
 exports.login = (req, res, next) => {
 
@@ -55,6 +56,22 @@ exports.login = (req, res, next) => {
 
   exports.confirmBuyerEmail = (req, res, next) => {
       mailConfirmationService.buyerEmail(req.body)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };
+
+  exports.inviteAdmin = (req, res, next) => {
+      mailInvitationService.inviteAdmin(req.body)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };
+  exports.inviteThirdParty = (req, res, next) => {
+      mailInvitationService.inviteThirdParty(req.body)
+          .then(()=> res.json({}))
+          .catch(err => next(err));
+  };
+  exports.inviteServiceProvider = (req, res, next) => {
+      mailInvitationService.inviteServiceProvider(req.body)
           .then(()=> res.json({}))
           .catch(err => next(err));
   };

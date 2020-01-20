@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const User = new Schema({
     _id: { type: Schema.Types.ObjectId, auto: true },
-    userType: { type: String },
+    userType: { type: String, enum: ['buyer', 'seller', 'admin', 'thirdParty'] },
     name: { type: String },
     email:{ type: String },
     membershipNumber: { type: String },
