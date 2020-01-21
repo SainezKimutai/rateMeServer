@@ -24,4 +24,7 @@ router.delete('/removeMessageImage/:name', controller.removeMessageImage);
 router.post('/uploadSignatures', controller.uploadSignatures);
 router.delete('/removeSignatures/:name', controller.removeSignatures);
 
+router.post('/uploadPaymentProofImage', controller.uploadPaymentProofImage);
+router.delete('/removePaymentProofImage/:name', controller.removePaymentProofImage);
+
 module.exports = router;

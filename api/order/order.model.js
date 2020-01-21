@@ -18,7 +18,8 @@ const orderSchema = new mongoose.Schema({
     signature: {url: String, name: String},
     dateSigned: Date,
     paymentStatus: Boolean,
-    orderStatus: String
+    orderStatus: String,
+    paymentProof: {url: String, name: String}
 
 });
 

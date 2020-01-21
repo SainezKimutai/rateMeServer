@@ -294,6 +294,49 @@ async function removeSignatures(req, res) {
 
 
 
+async function uploadPaymentProofImage(req, res) {
+
+  return new Promise((resolve, reject)=>{
+  if (Object.keys(req.files).length == 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  let fileUploaded = req.files.fileUploaded;
+  let nameTheFile = Date.now()+fileUploaded.name;
+  let fullDirectory = __dirname+'/../../public/images/paymentProofImages/'+nameTheFile;
+
+  fileUploaded.mv(fullDirectory, function(err) {
+
+    if(!err){
+      resolve(nameTheFile)
+
+    }
+    if(err){
+       console.log(err)
+    }
+
+  });
+
+
+  });
+}
+
+async function removePaymentProofImage(req, res) {
+  return new Promise((resolve, reject)=>{
+    let fileName = req;
+    let fileDirectory = __dirname+'/../../public/images/paymentProofImages/'+fileName;
+      fs.unlink(fileDirectory,function(err){
+           if(err) return console.log(err);
+           resolve('File deleted successfully')
+      });
+  });
+}
+
+
+
+
+
+
+
 module.exports = { uploadProdCert, removeProdCert, uploadBusnessCap, removeBusnessCap, uploadCompanyPics, removeCompanyPics,
                     uploadBuyersPics, removeBuyersPics, uploadProductImage, removeProductImage, uploadMessageImage, removeMessageImage,
-                  uploadSignatures, removeSignatures};
+                  uploadSignatures, removeSignatures, uploadPaymentProofImage, removePaymentProofImage};
