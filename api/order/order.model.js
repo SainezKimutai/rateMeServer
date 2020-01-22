@@ -20,7 +20,6 @@ const orderSchema = new mongoose.Schema({
     paymentStatus: Boolean,
     orderStatus: String,
     paymentProof: {url: String, name: String}
-
 });
 
 // model

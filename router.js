@@ -11,6 +11,7 @@ const express = require('express');
     app.use('/api/receipt', require('./api/receipt'));
     app.use('/api/purchaseOrder', require('./api/purchaseOrder'));
     app.use('/api/order', require('./api/order'));
+    app.use('/api/delivery', require('./api/delivery'));
     app.use('/api/fileUpload', require('./api/fileUpload'));
     app.use('/static', express.static('./public'));
 };

@@ -101,3 +101,15 @@ exports.removePaymentProofImage = (req, res, next) => {
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
+
+exports.uploadDeliveryDocument = (req, res, next) => {
+  fileUploadService.uploadDeliveryDocument(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.removeDeliveryDocument = (req, res, next) => {
+  fileUploadService.removeDeliveryDocument(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}
