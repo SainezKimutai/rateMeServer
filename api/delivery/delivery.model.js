@@ -14,7 +14,8 @@ const deliverySchema = new mongoose.Schema({
       docTwo: {name: String, url: String},
       picOne: {name: String, url: String},
       picTwo: {name: String, url: String},
-    }
+    },
+    deliveryRecieved: Boolean
 });
 
 // model
