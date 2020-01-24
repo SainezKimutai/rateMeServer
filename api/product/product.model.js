@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // Schema
 const productSchema = new mongoose.Schema({
+    sellerId: String,
     name : String,
     subCategory: { index: Number, name: String},
     price: Number,
@@ -10,7 +11,7 @@ const productSchema = new mongoose.Schema({
     deliveryMethod: String,
     minimumOrder: String,
     sellersMembershipNumber: String,
-    publishStatus: String,
+    publishStatus: { type: String, enum: ['Unpublished', 'Published'] },
     image: {
       imageOne: {name: '', url: ''},
       imageTwo: {name: '', url: ''},
