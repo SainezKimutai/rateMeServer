@@ -8,7 +8,6 @@ const server = http.createServer(app);
 const socketIO = require('socket.io');
 const io = socketIO.listen(server);
 const jwtRouteAuth = require('./helper/jwtAuthentication.js');
-const Emit = require('./api/emit/emit.controller.js');
 const fileUpload = require('express-fileupload');
 
 const config = require('./config');
@@ -37,9 +36,6 @@ const logRequestStart = (req, res, next) => {
 
   res.on('finish', () => {
       console.info(`${res.statusCode} ${res.statusMessage}; ${res.get('Content-Length') || 0}b sent`)
-      setTimeout(()=>{
-        Emit(app, io);
-      }, 1)
   });
 
   next()

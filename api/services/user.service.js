@@ -1,8 +1,7 @@
 const Secret = require('../../config/dev').Secret;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
-const User = require('../users/users.model');
-
+const User = require('../users/users.model').User;
 
 // Authenticate Users
 async function authenticate({ email, password }) {
@@ -20,7 +19,7 @@ async function authenticate({ email, password }) {
 
 // Create New User
 async function create(userParam){
-    // Validate
+    // Check Id user existes
     if (await User.findOne({ email: userParam.email })) {
         return;
     }

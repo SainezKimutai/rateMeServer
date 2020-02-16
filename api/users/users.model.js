@@ -1,17 +1,19 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
+const Model = mongoose.model;
 
-const User = new Schema({
-    _id: { type: Schema.Types.ObjectId, auto: true },
-    userType: { type: String, enum: ['buyer', 'seller', 'admin', 'thirdParty'] },
-    name: { type: String },
-    email:{ type: String },
-    membershipNumber: { type: String },
-    phone: { type: String },
-    password: {  type: String}
+
+// Schema
+const userSchema = new Schema({
+  _id: { type: Schema.Types.ObjectId, auto: true },
+  password: String,
+  email: String,
+  createdAt: Date,
+  updatedAt: Date
 });
-User.pre('save', function (next) {
+
+userSchema.pre('save', function (next) {
     if(this.password) {
         if(this.isModified('password') || this.isNew) {
 
@@ -33,7 +35,7 @@ User.pre('save', function (next) {
     }
 });
 
-User.methods = {
+userSchema.methods = {
     hash(password, callback){
         return bcrypt.hash(password,null, null, function(err, hash){
             if(err) {
@@ -56,4 +58,7 @@ authenticate(password, callback){
 }
 }
 
-module.exports = mongoose.model('User', User);
+// model
+const User = Model('User', userSchema);
+
+module.exports = { User : User };

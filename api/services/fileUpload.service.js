@@ -1,6 +1,8 @@
 const fs = require('fs');
 
-async function uploadProdCert(req, res) {
+
+
+async function uploadOrgLogo(req, res) {
 
   return new Promise((resolve, reject)=>{
   if (Object.keys(req.files).length == 0) {
@@ -8,108 +10,26 @@ async function uploadProdCert(req, res) {
   }
   let fileUploaded = req.files.fileUploaded;
   let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/prodCertImages/'+nameTheFile;
+  let fullDirectory = __dirname+'/../../public/images/orgProfileImages/'+nameTheFile;
 
   fileUploaded.mv(fullDirectory, function(err) {
-
     if(!err){
       resolve(nameTheFile)
-
     }
     if(err){
        console.log(err)
     }
-
   });
-
-
   });
 }
 
-async function removeProdCert(req, res) {
+
+
+async function removeOrgLogo(req, res) {
+
   return new Promise((resolve, reject)=>{
     let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/prodCertImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-
-
-async function uploadBusnessCap(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/businessCapImages/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removeBusnessCap(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/businessCapImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-async function uploadCompanyPics(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/companyPictures/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removeCompanyPics(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/companyPictures/'+fileName;
+    let fileDirectory = __dirname+'/../../public/images/orgProfileImages/'+fileName;
       fs.unlink(fileDirectory,function(err){
            if(err) return console.log(err);
            resolve('File deleted successfully')
@@ -123,8 +43,7 @@ async function removeCompanyPics(req, res) {
 
 
 
-
-async function uploadBuyersPics(req, res) {
+async function uploadUserLogo(req, res) {
 
   return new Promise((resolve, reject)=>{
   if (Object.keys(req.files).length == 0) {
@@ -132,28 +51,26 @@ async function uploadBuyersPics(req, res) {
   }
   let fileUploaded = req.files.fileUploaded;
   let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/buyersPictures/'+nameTheFile;
+  let fullDirectory = __dirname+'/../../public/images/userProfileImages/'+nameTheFile;
 
   fileUploaded.mv(fullDirectory, function(err) {
-
     if(!err){
       resolve(nameTheFile)
-
     }
     if(err){
        console.log(err)
     }
-
   });
-
-
   });
 }
 
-async function removeBuyersPics(req, res) {
+
+
+async function removeUserLogo(req, res) {
+
   return new Promise((resolve, reject)=>{
     let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/buyersPictures/'+fileName;
+    let fileDirectory = __dirname+'/../../public/images/userProfileImages/'+fileName;
       fs.unlink(fileDirectory,function(err){
            if(err) return console.log(err);
            resolve('File deleted successfully')
@@ -164,216 +81,4 @@ async function removeBuyersPics(req, res) {
 
 
 
-
-
-
-
-
-async function uploadProductImage(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/productImages/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removeProductImage(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/productImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-
-
-async function uploadMessageImage(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/messageImages/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removeMessageImage(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/messageImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-
-
-async function uploadSignatures(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/signatureImages/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removeSignatures(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/signatureImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-
-async function uploadPaymentProofImage(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/paymentProofImages/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-
-  });
-}
-
-async function removePaymentProofImage(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/paymentProofImages/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-
-async function uploadDeliveryDocument(req, res) {
-
-  return new Promise((resolve, reject)=>{
-  if (Object.keys(req.files).length == 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  let fileUploaded = req.files.fileUploaded;
-  let nameTheFile = Date.now()+fileUploaded.name;
-  let fullDirectory = __dirname+'/../../public/images/deliveryDocuments/'+nameTheFile;
-
-  fileUploaded.mv(fullDirectory, function(err) {
-
-    if(!err){
-      resolve(nameTheFile)
-
-    }
-    if(err){
-       console.log(err)
-    }
-
-  });
-
-  });
-}
-
-async function removeDeliveryDocument(req, res) {
-  return new Promise((resolve, reject)=>{
-    let fileName = req;
-    let fileDirectory = __dirname+'/../../public/images/deliveryDocuments/'+fileName;
-      fs.unlink(fileDirectory,function(err){
-           if(err) return console.log(err);
-           resolve('File deleted successfully')
-      });
-  });
-}
-
-
-
-
-module.exports = { uploadProdCert, removeProdCert, uploadBusnessCap, removeBusnessCap, uploadCompanyPics, removeCompanyPics,
-                    uploadBuyersPics, removeBuyersPics, uploadProductImage, removeProductImage, uploadMessageImage, removeMessageImage,
-                  uploadSignatures, removeSignatures, uploadPaymentProofImage, removePaymentProofImage, uploadDeliveryDocument, removeDeliveryDocument};
+module.exports = { uploadOrgLogo, removeOrgLogo, uploadUserLogo, removeUserLogo};

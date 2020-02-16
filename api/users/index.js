@@ -9,10 +9,6 @@ router.post('/login', controller.login);
 router.post('/register', controller.create);
 router.put('/update/:id', controller.update);
 router.delete('/delete/:id', controller.delete);
-router.post('/confirmSellerEmail', controller.confirmSellerEmail);
-router.post('/confirmBuyerEmail', controller.confirmBuyerEmail);
-router.post('/inviteAdmin', controller.inviteAdmin);
-router.post('/inviteThirdParty', controller.inviteThirdParty);
-router.post('/inviteServiceProvider', controller.inviteServiceProvider);
+router.delete('/deleteAll', controller.deleteAll);
 
 module.exports = router;

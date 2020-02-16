@@ -1,17 +1,20 @@
 const express = require('express');
  exports.register = (app) => {
-    app.use('/api/user', require('./api/users'));
-    app.use('/api/sellersProfile', require('./api/sellersProfile'));
-    app.use('/api/buyersProfile', require('./api/buyersProfile'));
-    app.use('/api/product', require('./api/product'));
-    app.use('/api/messaging', require('./api/messaging'));
-    app.use('/api/invoice', require('./api/invoice'));
-    app.use('/api/quotation', require('./api/quotation'));
-    app.use('/api/rfq', require('./api/rfq'));
-    app.use('/api/receipt', require('./api/receipt'));
-    app.use('/api/purchaseOrder', require('./api/purchaseOrder'));
-    app.use('/api/order', require('./api/order'));
-    app.use('/api/delivery', require('./api/delivery'));
+    app.use('/api/users', require('./api/users'));
+    app.use('/api/orgProfile', require('./api/orgProfile'));
+    app.use('/api/industry', require('./api/industry'));
+
+    app.use('/api/orgBranch', require('./api/orgBranch'));
+    app.use('/api/userProfile', require('./api/userProfile'));
+    app.use('/api/interest', require('./api/interest'));
+    app.use('/api/possibleSolution', require('./api/possibleSolution'));
+    app.use('/api/question', require('./api/question'));
+    app.use('/api/response', require('./api/response'));
+    app.use('/api/template', require('./api/template'));
+    app.use('/api/userInterest', require('./api/userInterest'));
+    app.use('/api/userRating', require('./api/userRating'));
+    app.use('/api/ratingRange', require('./api/ratingRange'));
+
     app.use('/api/fileUpload', require('./api/fileUpload'));
     app.use('/static', express.static('./public'));
 };
