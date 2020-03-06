@@ -5,14 +5,14 @@ const express = require('express');
     app.use('/api/industry', require('./api/industry'));
 
     app.use('/api/orgBranch', require('./api/orgBranch'));
-    app.use('/api/userProfile', require('./api/userProfile'));
+    app.use('/api/customerProfile', require('./api/customerProfile'));
     app.use('/api/interest', require('./api/interest'));
     app.use('/api/possibleSolution', require('./api/possibleSolution'));
     app.use('/api/question', require('./api/question'));
     app.use('/api/response', require('./api/response'));
     app.use('/api/template', require('./api/template'));
-    app.use('/api/userInterest', require('./api/userInterest'));
-    app.use('/api/userRating', require('./api/userRating'));
+    app.use('/api/customerInterest', require('./api/customerInterest'));
+    app.use('/api/customerRating', require('./api/customerRating'));
     app.use('/api/ratingRange', require('./api/ratingRange'));
 
     app.use('/api/fileUpload', require('./api/fileUpload'));

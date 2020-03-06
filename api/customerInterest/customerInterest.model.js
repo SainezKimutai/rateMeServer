@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
 // Schema
-const userInterestSchema = new Schema({
+const customerInterestSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  userProfileId: String,
+  customerProfileId: String,
   interestId: String,
   createdAt: Date,
   updatedAt: Date
 });
 
 // model
-const UserInterest = Model('UserInterest', userInterestSchema);
+const CustomerInterest = Model('CustomerInterest', customerInterestSchema);
 
-module.exports = { UserInterest : UserInterest };
+module.exports = { CustomerInterest : CustomerInterest };

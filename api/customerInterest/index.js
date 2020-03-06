@@ -1,6 +1,6 @@
 const express = require('express');
 
-const controller = require('./userRating.controller');
+const controller = require('./customerInterest.controller');
 const router = express.Router();
 
 router.post('/create', controller.create);

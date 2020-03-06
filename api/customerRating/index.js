@@ -1,6 +1,6 @@
 const express = require('express');
 
-const controller = require('./userProfile.controller');
+const controller = require('./customerRating.controller');
 const router = express.Router();
 
 router.post('/create', controller.create);

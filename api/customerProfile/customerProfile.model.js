@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
 // Schema
-const userProfileSchema = new Schema({
+const customerProfileSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   userId: String,
   username: String,
@@ -15,6 +15,6 @@ const userProfileSchema = new Schema({
 });
 
 // model
-const UserProfile = Model('UserProfile', userProfileSchema);
+const CustomerProfile = Model('CustomerProfile', customerProfileSchema);
 
-module.exports = { UserProfile : UserProfile };
+module.exports = { CustomerProfile : CustomerProfile };
