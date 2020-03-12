@@ -57,7 +57,7 @@ routes.register(app);
 
 // Listening to port
 server.listen(4111, () => {
-  console.log('Server running on localhost:3000');
+  console.log('Server running on localhost: 4111');
 });
 
 module.exports = app;

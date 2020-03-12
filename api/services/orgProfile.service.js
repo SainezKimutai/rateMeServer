@@ -1,4 +1,4 @@
-const OrgProfile = require('../orgProfile/OrgProfile.model').OrgProfile;
+const OrgProfile = require('../orgProfile/orgProfile.model').OrgProfile;
 
 
 async function create(reqParam){
