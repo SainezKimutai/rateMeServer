@@ -9,6 +9,7 @@ const customerProfileSchema = new Schema({
   username: String,
   logo: {name: String, url: String},
   dob: Date,
+  interest: [],
   residence: String,
   createdAt: Date,
   updatedAt: Date

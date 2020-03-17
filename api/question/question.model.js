@@ -5,7 +5,7 @@ const Model = mongoose.model;
 // Schema
 const questionSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  orgProfileId: String,
+  industryId: String,
   templateId: String,
   ratingRangeId: String,
   question: String,

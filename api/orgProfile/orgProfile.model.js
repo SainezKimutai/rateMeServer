@@ -8,6 +8,7 @@ const orgProfileSchema = new Schema({
   businessName: String,
   industryId: String,
   logo: {name: String, url: String},
+  templateIds: [],
   location: String,
   createdAt: Date,
   updatedAt: Date

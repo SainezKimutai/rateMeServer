@@ -5,9 +5,12 @@ const Model = mongoose.model;
 // Schema
 const customerRatingSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
+  userProfileId: String,
   orgProfileId: String,
-  customerProfileId: String,
+  questionId: String,
+  responseId: String,
   possibleSolutionId: String,
+  ratingNumber: String,
   createdAt: Date,
   updatedAt: Date
 });
