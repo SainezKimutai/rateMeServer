@@ -6,7 +6,6 @@ const Model = mongoose.model;
 const questionSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   industryId: String,
-  templateId: String,
   ratingRangeId: String,
   question: String,
   createdAt: Date,

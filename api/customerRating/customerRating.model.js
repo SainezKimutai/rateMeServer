@@ -11,6 +11,7 @@ const customerRatingSchema = new Schema({
   responseId: String,
   possibleSolutionId: String,
   ratingNumber: String,
+  RatingState: String,
   createdAt: Date,
   updatedAt: Date
 });
