@@ -14,6 +14,7 @@ const express = require('express');
     app.use('/api/customerInterest', require('./api/customerInterest'));
     app.use('/api/customerRating', require('./api/customerRating'));
     app.use('/api/ratingRange', require('./api/ratingRange'));
+    app.use('/api/emoji', require('./api/emoji'));
 
     app.use('/api/fileUpload', require('./api/fileUpload'));
     app.use('/static', express.static('./public'));
