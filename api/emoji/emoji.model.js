@@ -6,6 +6,7 @@ const Model = mongoose.model;
 const emojiSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   emojiName: String,
+  rangeId: String,
   emojiJson: { type: Schema.Types.Mixed, auto: true },
   createdAt: Date,
   updatedAt: Date
