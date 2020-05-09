@@ -5,6 +5,7 @@ const Model = mongoose.model;
 // Schema
 const orgProfileSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
+  userId: String,
   businessName: String,
   industryId: String,
   logo: {name: String, url: String},

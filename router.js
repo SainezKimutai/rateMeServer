@@ -15,6 +15,7 @@ const express = require('express');
     app.use('/api/customerRating', require('./api/customerRating'));
     app.use('/api/ratingRange', require('./api/ratingRange'));
     app.use('/api/ratingPoints', require('./api/ratingPoints'));
+    app.use('/api/reward', require('./api/reward'));
     app.use('/api/emoji', require('./api/emoji'));
 
     app.use('/api/fileUpload', require('./api/fileUpload'));

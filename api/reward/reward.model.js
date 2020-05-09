@@ -3,16 +3,16 @@ const Schema = mongoose.Schema;
 const Model = mongoose.model;
 
 // Schema
-const ratingPointSchema = new Schema({
+const rewardSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  userId: String,
   orgId: String,
   points: Number,
+  reward: String,
   createdAt: Date,
   updatedAt: Date
 });
 
 // model
-const RatingPoint = Model('RatingPoint', ratingPointSchema);
+const Reward = Model('Reward', rewardSchema);
 
-module.exports = { RatingPoint : RatingPoint };
+module.exports = { Reward : Reward };
