@@ -14,7 +14,10 @@ async function uploadOrgLogo(req, res) {
 
   fileUploaded.mv(fullDirectory, function(err) {
     if(!err){
-      resolve(nameTheFile)
+      resolve({
+        name: nameTheFile,
+        url: 'static/images/orgProfileImages/'+nameTheFile
+      })
     }
     if(err){
        console.log(err)
@@ -22,6 +25,9 @@ async function uploadOrgLogo(req, res) {
   });
   });
 }
+
+
+
 
 
 
@@ -55,7 +61,10 @@ async function uploadUserLogo(req, res) {
 
   fileUploaded.mv(fullDirectory, function(err) {
     if(!err){
-      resolve(nameTheFile)
+      resolve({
+        name: nameTheFile,
+        url: 'static/images/userProfileImages/'+nameTheFile
+      })
     }
     if(err){
        console.log(err)

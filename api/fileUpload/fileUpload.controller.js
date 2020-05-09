@@ -3,7 +3,7 @@ const fileUploadService = require("../services/fileUpload.service.js");
 
 exports.uploadOrgLogo = (req, res, next) => {
   fileUploadService.uploadOrgLogo(req)
-    .then((e) => (console.log(e),res.json({imageName: e})))
+    .then((e) => (res.json(e)))
     .catch(err => {res.sendStatus(401); console.log(err)})
 }
 
@@ -15,7 +15,7 @@ exports.removeOrgLogo = (req, res, next) => {
 
 exports.uploadUserLogo = (req, res, next) => {
   fileUploadService.uploadOrgLogo(req)
-    .then((e) => (console.log(e),res.json({imageName: e})))
+    .then((e) => (res.json(e)))
     .catch(err => {res.sendStatus(401); console.log(err)})
 }
 
