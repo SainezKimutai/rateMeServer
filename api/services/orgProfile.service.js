@@ -1,11 +1,22 @@
 const OrgProfile = require('../orgProfile/orgProfile.model').OrgProfile;
+const QRCode = require('qrcode');
 
+async function generateQRCode(name) {
+  return new Promise((resolve, reject) => {
+    QRCode.toDataURL(`${name}`, { errorCorrectionLevel: 'H' }, function (err, url) {
+      resolve(url);
+    })
+  })
+}
 
 async function create(reqParam){
-    let newReq = new OrgProfile(reqParam);
-    await newReq.save();
+      generateQRCode(reqParam.businessName).then((url)=> {
+      reqParam.qrCode = url;
+      let newReq = new OrgProfile(reqParam);
+      newReq.save();
+      return OrgProfile.findOne({ _id: newReq._id });
+    })
 
-    return OrgProfile.findOne({ _id: newReq._id });
 }
 
 
@@ -16,6 +27,10 @@ async function getAll() {
 
 async function getOne(_id) {
     return OrgProfile.findById(_id);
+}
+
+async function getByUserId(reqParam) {
+    return OrgProfile.findOne({ userId: reqParam.userId });
 }
 
 
@@ -36,4 +51,6 @@ async function _delete(id) {
     await OrgProfile.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+
+
+module.exports = { create, getAll, getOne, getByUserId, update, delete: _delete };

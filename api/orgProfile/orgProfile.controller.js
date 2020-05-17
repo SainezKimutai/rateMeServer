@@ -7,6 +7,7 @@ exports.create = (req, res, next) => {
         .catch(err => next(err));
 };
 
+
 exports.getAll = (req, res, next) => {
     orgProfileService.getAll()
         .then(rsps => { res.json(rsps);  })
@@ -18,6 +19,13 @@ exports.getOne = (req, res, next) => {
             .then(rsp => rsp ? res.json(rsp): res.sendStatus(404))
             .catch(err => next(err));
 };
+
+exports.getByUserId = (req, res, next) => {
+    orgProfileService.getByUserId(req.body)
+        .then(rsp => res.json(rsp))
+        .catch(err => next(err));
+};
+
 
 exports.update = (req, res, next) => {
     orgProfileService.update(req.params.id, req.body)
