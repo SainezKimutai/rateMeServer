@@ -8,19 +8,19 @@ exports.uploadOrgLogo = (req, res, next) => {
 }
 
 exports.removeOrgLogo = (req, res, next) => {
-  fileUploadService.uploadOrgLogo(req.params.name)
+  fileUploadService.removeOrgLogo(req.params.name)
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
 
 exports.uploadUserLogo = (req, res, next) => {
-  fileUploadService.uploadOrgLogo(req)
+  fileUploadService.uploadUserLogo(req)
     .then((e) => (res.json(e)))
     .catch(err => {res.sendStatus(401); console.log(err)})
 }
 
 exports.removeUserLogo = (req, res, next) => {
-  fileUploadService.uploadOrgLogo(req.params.name)
+  fileUploadService.removeUserLogo(req.params.name)
     .then(()=> res.json({}))
     .catch(err => next(err));
 }
