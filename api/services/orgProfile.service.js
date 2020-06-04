@@ -10,7 +10,7 @@ async function generateQRCode(name) {
 }
 
 async function create(reqParam){
-      generateQRCode(reqParam.businessName).then((url)=> {
+      generateQRCode(reqParam.industryId).then((url)=> {
       reqParam.qrCode = url;
       let newReq = new OrgProfile(reqParam);
       newReq.save();
