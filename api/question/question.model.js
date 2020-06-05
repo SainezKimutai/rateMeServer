@@ -8,8 +8,8 @@ const questionSchema = new Schema({
   industryId: String,
   ratingRangeId: String,
   question: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

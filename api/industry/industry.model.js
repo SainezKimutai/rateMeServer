@@ -6,8 +6,8 @@ const Model = mongoose.model;
 const industrySchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   industryName: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

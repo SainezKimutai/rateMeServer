@@ -7,8 +7,8 @@ const possibleSolutionSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   responseId: String,
   solution: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

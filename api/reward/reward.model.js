@@ -5,11 +5,10 @@ const Model = mongoose.model;
 // Schema
 const rewardSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  orgId: String,
   points: Number,
   reward: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

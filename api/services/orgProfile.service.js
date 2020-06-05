@@ -15,8 +15,6 @@ async function create(reqParam){
       let newReq = new OrgProfile(reqParam);
       newReq.save();
       return OrgProfile.findOne({ _id: newReq._id });
-    })
-
 }
 
 
@@ -52,5 +50,4 @@ async function _delete(id) {
 }
 
 
-
-module.exports = { create, getAll, getOne, getByUserId, update, delete: _delete };
+module.exports = { create, getAll, getOne, getByUserId, update, delete: _delete, generateQRCode};

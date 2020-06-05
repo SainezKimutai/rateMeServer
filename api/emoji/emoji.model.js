@@ -8,8 +8,8 @@ const emojiSchema = new Schema({
   emojiName: String,
   rangeId: String,
   emojiJson: { type: Schema.Types.Mixed, auto: true },
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 
 });
 

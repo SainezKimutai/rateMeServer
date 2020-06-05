@@ -7,8 +7,8 @@ const templateSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   industryId: String,
   templateName: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model
