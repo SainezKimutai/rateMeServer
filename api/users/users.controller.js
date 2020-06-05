@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const customerProfileService = require('../services/customerProfile.service');
 
 exports.login = (req, res, next) => {
     userService.authenticate(req.body)
@@ -8,9 +9,20 @@ exports.login = (req, res, next) => {
 
 exports.create = (req, res, next) => {
     userService.create(req.body)
-        .then(user => user ? res.json(user) : res.status(409).json({ message: 'User already Exists' }))
+        .then(user => {
+          if (user) {
+            if (user.userType === 'customer') {
+              customerProfileService.create({userId: user._id, username: req.body.username})
+                  .then(userPrf => res.json(user))
+                  .catch(err => next(err));
+            } else {
+                res.json(user)
+            }
+          } else {
+            res.status(409).json({ message: 'User already Exists' })
+          }
+        })
         .catch(err => next(err));
-
 };
 
 exports.getAll = (req, res, next) => {
