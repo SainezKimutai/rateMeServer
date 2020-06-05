@@ -5,8 +5,8 @@ const Model = mongoose.model;
 // Schema
 const ratingRangeSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  minimumRange: String,
-  maximumRange: String,
+  minimumRange: Number,
+  maximumRange: Number,
   rangeName: String,
   createdAt: { type : Date, default: Date.now },
   updatedAt: { type : Date, default: Date.now }

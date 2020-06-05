@@ -13,6 +13,10 @@ async function getAll() {
     return await Emoji.find({});
 }
 
+async function getAllByRangeId(id) {
+    return await Emoji.find({rangeId: id});
+}
+
 
 async function getOne(_id) {
     return Emoji.findById(_id);
@@ -36,4 +40,4 @@ async function _delete(id) {
     await Emoji.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, getAllByRangeId, delete: _delete };

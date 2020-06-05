@@ -9,7 +9,7 @@ const userSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   password: String,
   email: String,
-  userType: {type: String, enum: ['customer', 'orgAdmin', 'systemAdmin']},
+  userType: {type: String, enum: ['customer', 'orgAdmin', 'systemAdmin'], default: 'customer'},
   createdAt: { type : Date, default: Date.now },
   updatedAt: { type : Date, default: Date.now }
 });

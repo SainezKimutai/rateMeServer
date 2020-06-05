@@ -1,4 +1,5 @@
 const emojiService = require('../services/emoji.service');
+const ratingRangeService = require('../services/ratingRange.service');
 
 
 exports.create = (req, res, next) => {
@@ -18,6 +19,23 @@ exports.getOne = (req, res, next) => {
             .then(rsp => rsp ? res.json(rsp): res.sendStatus(404))
             .catch(err => next(err));
 };
+
+
+exports.getAllByRangeNumber = (req, res, next) => {
+  ratingRangeService.getAll()
+      .then(AllRanges => {
+        AllRanges.forEach((range) => {
+          if (range.minimumRange  <= req.body.rangeNumber && range.maximumRange >= req.body.rangeNumber) {
+            emojiService.getAllByRangeId(range._id)
+            .then(rsps => { res.json(rsps);  })
+            .catch(err => next(err));
+          }
+        });
+
+       })
+      .catch(err => next(err));
+};
+
 
 exports.update = (req, res, next) => {
     emojiService.update(req.params.id, req.body)
