@@ -18,6 +18,9 @@ async function getOne(_id) {
     return CustomerRating.findById(_id);
 }
 
+async function getAllByCustomer(id) {
+    return await CustomerRating.find({userProfileId: id});
+}
 
 async function update(id, reqParam) {
     let getReq = await CustomerRating.findById(id);
@@ -36,4 +39,4 @@ async function _delete(id) {
     await CustomerRating.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, getAllByCustomer, delete: _delete };
