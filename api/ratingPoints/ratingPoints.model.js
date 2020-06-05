@@ -8,8 +8,8 @@ const ratingPointSchema = new Schema({
   userId: String,
   orgId: String,
   points: Number,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model
