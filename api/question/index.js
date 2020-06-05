@@ -4,6 +4,7 @@ const controller = require('./question.controller');
 const router = express.Router();
 
 router.post('/create', controller.create);
+router.post('/getAllByRangeIndustry', controller.getAllByRangeIndustry);
 router.get('/getAll', controller.getAll);
 router.get('/getOne/:id', controller.getOne);
 router.put('/update/:id', controller.update);
