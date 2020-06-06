@@ -25,6 +25,12 @@ exports.getAllByCustomer = (req, res, next) => {
         .catch(err => next(err));
 };
 
+exports.getAllByOrgProfile = (req, res, next) => {
+    customerRatingService.getAllByOrgProfile(req.params.id)
+        .then(rsps => { res.json(rsps);  })
+        .catch(err => next(err));
+};
+
 
 exports.update = (req, res, next) => {
     customerRatingService.update(req.params.id, req.body)
