@@ -6,7 +6,7 @@ async function addUserRatingPoints(param) {
     .then(rsp => {
       if (rsp){
         rsp.points = rsp.points + 10;
-        ratingPointsService.update(rsp._id)
+        ratingPointsService.update(rsp._id, rsp)
           .then(rsps => { })
           .catch(err => next(err));
       } else {
