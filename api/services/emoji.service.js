@@ -22,6 +22,9 @@ async function getOne(_id) {
     return Emoji.findById(_id);
 }
 
+async function getOneByName(nameParam) {
+    return Emoji.findOne({ emojiName: nameParam });
+}
 
 async function update(id, reqParam) {
     let getReq = await Emoji.findById(id);

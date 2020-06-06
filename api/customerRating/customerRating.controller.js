@@ -1,9 +1,29 @@
 const customerRatingService = require('../services/customerRating.service');
+const ratingPointsService = require('../services/ratingPoints.service');
 
+async function addUserRatingPoints(param) {
+    ratingPointsService.getOneByUserProfileId(param.userProfileId)
+    .then(rsp => {
+      if (rsp){
+        rsp.points = rsp.points + 10;
+        ratingPointsService.update(rsp._id)
+          .then(rsps => { })
+          .catch(err => next(err));
+      } else {
+        ratingPointsService.create({userProfileId: param.userProfileId, points: 10 })
+          .then(rsps => { })
+          .catch(err => next(err));
+      }
+     })
+    .catch(err => next(err));
+}
 
 exports.create = (req, res, next) => {
     customerRatingService.create(req.body)
-        .then(rsp => res.json(rsp))
+        .then(rsp => {
+          addUserRatingPoints(req.body);
+          res.json(rsp)
+         })
         .catch(err => next(err));
 };
 
@@ -18,6 +38,19 @@ exports.getOne = (req, res, next) => {
             .then(rsp => rsp ? res.json(rsp): res.sendStatus(404))
             .catch(err => next(err));
 };
+
+exports.getAllByCustomer = (req, res, next) => {
+    customerRatingService.getAllByCustomer(req.params.id)
+        .then(rsps => { res.json(rsps);  })
+        .catch(err => next(err));
+};
+
+exports.getAllByOrgProfile = (req, res, next) => {
+    customerRatingService.getAllByOrgProfile(req.params.id)
+        .then(rsps => { res.json(rsps);  })
+        .catch(err => next(err));
+};
+
 
 exports.update = (req, res, next) => {
     customerRatingService.update(req.params.id, req.body)
