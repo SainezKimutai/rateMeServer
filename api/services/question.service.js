@@ -24,6 +24,7 @@ async function getAllByRangeIndustry(param) {
 
 
 async function update(id, reqParam) {
+    reqParam.updatedAt = new Date();
     let getReq = await Question.findById(id);
 
     if (!getReq) throw 'getReq not Found';

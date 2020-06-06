@@ -12,8 +12,8 @@ const orgProfileSchema = new Schema({
   logo: {name: String, url: String},
   templateIds: [],
   location: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

@@ -25,6 +25,7 @@ async function getOneByUserProfileId(id) {
 
 
 async function update(id, reqParam) {
+    reqParam.updatedAt = new Date();
     let getReq = await RatingPoints.findById(id);
 
     if (!getReq) throw 'getReq not Found';

@@ -12,8 +12,8 @@ const customerRatingSchema = new Schema({
   possibleSolutionId: String,
   ratingNumber: Number,
   ratingState: String,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: { type : Date, default: Date.now },
+  updatedAt: { type : Date, default: Date.now }
 });
 
 // model

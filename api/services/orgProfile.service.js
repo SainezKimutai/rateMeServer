@@ -31,6 +31,7 @@ async function getByUserId(reqParam) {
 
 
 async function update(id, reqParam) {
+    reqParam.updatedAt = new Date();
     let getReq = await OrgProfile.findById(id);
 
     if (!getReq) throw 'getReq not Found';
