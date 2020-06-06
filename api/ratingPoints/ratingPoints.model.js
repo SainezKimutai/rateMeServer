@@ -5,8 +5,7 @@ const Model = mongoose.model;
 // Schema
 const ratingPointSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
-  userId: String,
-  orgId: String,
+  userProfileId: String,
   points: Number,
   createdAt: { type : Date, default: Date.now },
   updatedAt: { type : Date, default: Date.now }

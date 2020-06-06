@@ -19,6 +19,11 @@ async function getOne(_id) {
 }
 
 
+async function getOneByUserProfileId(id) {
+    return RatingPoints.findOne({ userProfileId: id });
+}
+
+
 async function update(id, reqParam) {
     let getReq = await RatingPoints.findById(id);
 
@@ -36,4 +41,4 @@ async function _delete(id) {
     await RatingPoints.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, getOneByUserProfileId, delete: _delete };

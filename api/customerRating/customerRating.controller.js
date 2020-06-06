@@ -1,9 +1,29 @@
 const customerRatingService = require('../services/customerRating.service');
+const ratingPointsService = require('../services/ratingPoints.service');
 
+async function addUserRatingPoints(param) {
+    ratingPointsService.getOneByUserProfileId(param.userProfileId)
+    .then(rsp => {
+      if (rsp){
+        rsp.points = rsp.points + 10;
+        ratingPointsService.update(rsp._id)
+          .then(rsps => { })
+          .catch(err => next(err));
+      } else {
+        ratingPointsService.create({userProfileId: param.userProfileId, points: 10 })
+          .then(rsps => { })
+          .catch(err => next(err));
+      }
+     })
+    .catch(err => next(err));
+}
 
 exports.create = (req, res, next) => {
     customerRatingService.create(req.body)
-        .then(rsp => res.json(rsp))
+        .then(rsp => {
+          addUserRatingPoints(req.body);
+          res.json(rsp)
+         })
         .catch(err => next(err));
 };
 
