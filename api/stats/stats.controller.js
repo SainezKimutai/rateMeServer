@@ -117,24 +117,18 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                   .then(orgPrfRsp => {
                     IndustryIdsArray.push(orgPrfRsp.industryId);
                     if (i === arr.length - 1){
-
-                    let counts = IndustryIdsArray.reduce((a, c) => {
-                      a[c] = (a[c] || 0) + 1;
-                      return a;
-                    }, {});
-                    let maxCount = Math.max(...Object.values(counts));
-                    let mostFrequentIndIds = Object.keys(counts).filter(k => counts[k] === maxCount);
-                    let IndustryArr = [];
-                    mostFrequentIndIds.forEach((indId, i2, arr2) => {
-                        let inds = IndustryIdsArray.filter((id) => id === indId).map(e => e);
-                        industryService.getOne(indId)
-                            .then(indInfo => {
-                              indInfo.ratingTimes = inds.length;
-                              IndustryArr.push(indInfo);
-                              if (i2 === arr2.length - 1) { res.json(IndustryArr) }
-                            })
-                            .catch(err => next(err));
-                      });
+                      let FilterIndustryIdsArray =  Array.from( new Set(IndustryIdsArray));
+                      let IndustryArr = [];
+                      FilterIndustryIdsArray.forEach((indId, i2, arr2) => {
+                          let inds = IndustryIdsArray.filter((id) => id === indId).map(e => e);
+                          industryService.getOne(indId)
+                              .then(indInfo => {
+                                indInfo.ratingTimes = inds.length;
+                                IndustryArr.push(indInfo);
+                                if (i2 === arr2.length - 1) { res.json(IndustryArr) }
+                              })
+                              .catch(err => next(err));
+                        });
 
                     }
                   })
