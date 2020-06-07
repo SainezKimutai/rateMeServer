@@ -27,6 +27,7 @@ async function getOneByName(nameParam) {
 }
 
 async function update(id, reqParam) {
+    reqParam.updatedAt = new Date();
     let getReq = await Emoji.findById(id);
 
     if (!getReq) throw 'getReq not Found';

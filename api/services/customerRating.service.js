@@ -27,6 +27,7 @@ async function getAllByOrgProfile(id) {
 }
 
 async function update(id, reqParam) {
+    reqParam.updatedAt = new Date();
     let getReq = await CustomerRating.findById(id);
 
     if (!getReq) throw 'getReq not Found';
