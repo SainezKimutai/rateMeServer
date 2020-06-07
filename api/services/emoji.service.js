@@ -44,4 +44,4 @@ async function _delete(id) {
     await Emoji.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, getAllByRangeId, delete: _delete };
+module.exports = { create, getAll, getOne, update, getAllByRangeId, getOneByName, delete: _delete };
