@@ -19,8 +19,8 @@ exports.getOne = (req, res, next) => {
             .catch(err => next(err));
 };
 
-exports.getAllByRangeNumber = (req, res, next) => {
-    ratingRangeService.getAll()
+exports.getRangeByRatingNumber = (req, res, next) => {
+    ratingRangeService.getOne(req.params.id)
         .then(AllRanges => {
             AllRanges.forEach((range) => {
                 if (range.minimumRange  <= req.body.rangeNumber && range.maximumRange >= req.body.rangeNumber) {
