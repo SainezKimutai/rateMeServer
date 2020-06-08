@@ -8,6 +8,7 @@ const ratingRangeSchema = new Schema({
   minimumRange: Number,
   maximumRange: Number,
   rangeName: String,
+  rangeMessage: String,
   createdAt: { type : Date, default: Date.now },
   updatedAt: { type : Date, default: Date.now }
 });
