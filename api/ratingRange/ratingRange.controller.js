@@ -20,7 +20,7 @@ exports.getOne = (req, res, next) => {
 };
 
 exports.getRangeByRatingNumber = (req, res, next) => {
-    ratingRangeService.getOne(_id)
+    ratingRangeService.getAll()
         .then(AllRanges => {
             AllRanges.forEach((range) => {
                 if (range.minimumRange  <= req.body.rangeNumber && range.maximumRange >= req.body.rangeNumber) {
@@ -31,7 +31,7 @@ exports.getRangeByRatingNumber = (req, res, next) => {
             });
 
         })
-        .catch(err => next(err));
+        .catch(err => console.log(err));
 };
 
 
