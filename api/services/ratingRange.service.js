@@ -13,6 +13,9 @@ async function getAll() {
     return await RatingRange.find({});
 }
 
+async function getAllByRangeNumber(id) {
+    return await RatingRange.find({rangeId: id});
+}
 
 async function getOne(_id) {
     return RatingRange.findById(_id);
@@ -37,4 +40,4 @@ async function _delete(id) {
     await RatingRange.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getAllByRangeNumber, getOne, update, delete: _delete };

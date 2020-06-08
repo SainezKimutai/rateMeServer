@@ -19,6 +19,21 @@ exports.getOne = (req, res, next) => {
             .catch(err => next(err));
 };
 
+exports.getAllByRangeNumber = (req, res, next) => {
+    ratingRangeService.getAll()
+        .then(AllRanges => {
+            AllRanges.forEach((range) => {
+                if (range.minimumRange  <= req.body.rangeNumber && range.maximumRange >= req.body.rangeNumber) {
+                    ratingRangeService.getAllByRangeId(range._id)
+                        .then(rsps => { res.json(rsps);  })
+                        .catch(err => next(err));
+                }
+            });
+
+        })
+        .catch(err => next(err));
+};
+
 exports.update = (req, res, next) => {
     ratingRangeService.update(req.params.id, req.body)
         .then((rsp)=> {res.json(rsp);})
