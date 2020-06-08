@@ -8,14 +8,14 @@ async function addUserRatingPoints(param) {
         rsp.points = rsp.points + 10;
         ratingPointsService.update(rsp._id, rsp)
           .then(rsps => { })
-          .catch(err => next(err));
+          .catch(err => console.log(err));
       } else {
         ratingPointsService.create({userProfileId: param.userProfileId, points: 10 })
           .then(rsps => { })
-          .catch(err => next(err));
+          .catch(err => console.log(err));
       }
      })
-    .catch(err => next(err));
+    .catch(err => console.log(err));
 }
 
 exports.create = (req, res, next) => {
