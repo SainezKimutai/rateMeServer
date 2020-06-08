@@ -24,7 +24,7 @@ exports.getAllByRangeNumber = (req, res, next) => {
         .then(AllRanges => {
             AllRanges.forEach((range) => {
                 if (range.minimumRange  <= req.body.rangeNumber && range.maximumRange >= req.body.rangeNumber) {
-                    ratingRangeService.getAllByRangeId(range._id)
+                    ratingRangeService.getAllByRangeNumber(range._id)
                         .then(rsps => { res.json(rsps);  })
                         .catch(err => next(err));
                 }
