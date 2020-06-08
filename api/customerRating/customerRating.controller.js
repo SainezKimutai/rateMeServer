@@ -24,7 +24,7 @@ exports.create = (req, res, next) => {
           addUserRatingPoints(req.body);
           res.json(rsp)
          })
-        .catch(err => next(err));
+        .catch(err => console.log(err));
 };
 
 exports.getAll = (req, res, next) => {

@@ -89,14 +89,14 @@ exports.averageSatRateByOrg = (req, res, next) => {
                 UserProfilesArr.push(userPrf)
                 if (i === arr.length - 1) { res.json(UserProfilesArr) }
               })
-              .catch(err => next(err));
+              .catch(err => console.log(err));
         });
 
         } else {
           res.json(rsp)
         }
        })
-      .catch(err => next(err));
+      .catch(err => console.log(err));
 }
 
 

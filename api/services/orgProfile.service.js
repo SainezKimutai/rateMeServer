@@ -9,14 +9,15 @@ async function generateQRCode(name) {
   })
 }
 
-async function create(reqParam){
+async function create (reqParam){
       generateQRCode(reqParam.industryId).then((url)=> {
-      reqParam.qrCode = url;
-      let newReq = new OrgProfile(reqParam);
-      newReq.save();
-      return OrgProfile.findOne({ _id: newReq._id });
-}
+          reqParam.qrCode = url;
+          let newReq = new OrgProfile(reqParam);
+          newReq.save();
+          return OrgProfile.findOne({_id: newReq._id});
 
+      });
+}
 
 async function getAll() {
     return await OrgProfile.find({});
