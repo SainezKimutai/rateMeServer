@@ -47,25 +47,30 @@ exports.averageSatRateByCustomer = (req, res, next) => {
         let OrgPrfArr = [];
         FilterOrgProfile.forEach((orgId, i, arr) => {
           let orgRates = rsp.filter((rating) => rating.orgProfileId === orgId).map(e => e);
+            // console.log(orgRates);
           let totalRating = orgRates.reduce((a, b) => a + b.ratingNumber, 0);
-          let averageRating = totalRating / orgRates.length
-          orgProfileService.getOne(orgId)
-              .then(orgPrf => {
-                orgPrf.averageRating = averageRating;
-                OrgPrfArr.push(orgPrf)
-                if (i === arr.length - 1) { res.json(OrgPrfArr) }
-              })
-              .catch(err => next(err));
+            console.log(totalRating);
+          let averageRating = (Number(totalRating) / Number(orgRates.length))
+            console.log(averageRating);
+          // orgProfileService.getOne(orgId)
+          //     .then(orgPrf => {
+          //       orgPrf.averageRating = averageRating;
+          //       OrgPrfArr.push(orgPrf)
+          //       if (i === arr.length - 1) { res.json(OrgPrfArr) }
+          //     })
+          //     .catch(err => next(err));
+
+           OrgPrfArr.push({averageRating: averageRating, orgId})
+           if (i === arr.length - 1) { res.json(OrgPrfArr) }
         });
 
         } else {
           res.json(rsp)
+            // console.log(res.json(rsp))
         }
        })
-      .catch(err => next(err));
+      .catch(err => console.log(err));
 }
-
-
 
 
 
@@ -82,14 +87,18 @@ exports.averageSatRateByOrg = (req, res, next) => {
         FilterUserProfile.forEach((userId, i, arr) => {
           let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
           let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
-          let averageRating = totalRating / userRates.length
-          customerProfileService.getOne(userId)
-              .then(userPrf => {
-                userPrf.averageRating = averageRating;
-                UserProfilesArr.push(userPrf)
-                if (i === arr.length - 1) { res.json(UserProfilesArr) }
-              })
-              .catch(err => console.log(err));
+          let averageRating = (Number(totalRating)/ Number(userRates.length));
+          // customerProfileService.getOne(userId)
+          //     .then(userPrf => {
+          //       userPrf.averageRating = averageRating;
+          //       UserProfilesArr.push(userPrf)
+          //       if (i === arr.length - 1) { res.json(UserProfilesArr) }
+          //     })
+          //     .catch(err => console.log(err));
+
+          UserProfilesArr.push({averageRating: averageRating})
+          if (i === arr.length - 1) { res.json(UserProfilesArr) }
+
         });
 
         } else {
