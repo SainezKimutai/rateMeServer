@@ -25,6 +25,17 @@ exports.update = (req, res, next) => {
         .catch(err => next(err));
 };
 
+exports.redeem = (req, res, next) => {
+    ratingPointsService.getOneByUserProfileId(req.params.profileId)
+        .then((response)=> {
+          response.points = Number(response.points) - Number(req.body.redeemedPoints)
+          ratingPointsService.update(response._id, response)
+              .then((rsp)=> {res.json(rsp);})
+              .catch(err => next(err));
+        })
+        .catch(err => next(err));
+};
+
 exports.delete = (req, res, next) => {
     ratingPointsService.delete(req.params.id)
         .then(()=> {res.json({});})
