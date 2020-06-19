@@ -13,6 +13,12 @@ exports.getAll = (req, res, next) => {
         .catch(err => next(err));
 };
 
+exports.getAllByQuestionId = (req, res, next) => {
+    responseService.getAllByQuestionId(req.body.questionId)
+        .then(rsps => { res.json(rsps);  })
+        .catch(err => next(err));
+};
+
 exports.getOne = (req, res, next) => {
     responseService.getOne(req.params.id)
             .then(rsp => rsp ? res.json(rsp): res.sendStatus(404))

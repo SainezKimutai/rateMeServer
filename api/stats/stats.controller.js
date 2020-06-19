@@ -124,7 +124,7 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                           industryService.getOne(indId)
                               .then(indInfo => {
                                 indInfo.ratingTimes = inds.length;
-                                IndustryArr.push(indInfo);
+                                IndustryArr.push(indInfo, indInfo.ratingTimes);
                                 if (i2 === arr2.length - 1) { res.json(IndustryArr) }
                               })
                               .catch(err => next(err));
