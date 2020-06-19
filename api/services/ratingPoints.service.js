@@ -1,4 +1,4 @@
-const RatingPoints = require('../ratingPoints/ratingPoints.model').RatingPoints;
+const RatingPoints = require('../ratingPoints/ratingPoints.model').RatingPoint;
 
 
 async function create(reqParam){

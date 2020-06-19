@@ -7,11 +7,11 @@ async function addUserRatingPoints(param) {
       if (rsp){
         rsp.points = rsp.points + 10;
         ratingPointsService.update(rsp._id, rsp)
-          .then(rsps => { })
+          .then(rsps => {console.log(rsps)})
           .catch(err => console.log(err));
       } else {
         ratingPointsService.create({userProfileId: param.userProfileId, points: 10 })
-          .then(rsps => { })
+          .then(rsps => {console.log(rsps)})
           .catch(err => console.log(err));
       }
      })
