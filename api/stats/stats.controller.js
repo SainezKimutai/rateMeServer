@@ -36,8 +36,6 @@ exports.mostFrqRatedOrgByCustomer = (req, res, next) => {
 
 
 
-
-
 exports.averageSatRateByCustomer = (req, res, next) => {
   customerRatingService.getAllByCustomer(req.body.userProfileId)
       .then(rsp => {
@@ -144,13 +142,6 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
 };
 
 
-
-
-
-
-
-
-
 exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
     customerRatingService.getAllByCustomer(req.body.userProfileId)
         .then(rsp => {
@@ -179,9 +170,6 @@ exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
          })
         .catch(err => next(err));
 };
-
-
-
 
 
 

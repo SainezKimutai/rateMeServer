@@ -13,7 +13,7 @@ exports.create = (req, res, next) => {
           if (user) {
             if (user.userType === 'customer') {
               customerProfileService.create({userId: user._id, username: req.body.username})
-                  .then(userPrf => res.json(user))
+                  .then(userPrf => {user.userProfileId = userPrf._id; res.json(user)})
                   .catch(err => next(err));
             } else {
                 res.json(user)

@@ -29,6 +29,7 @@ exports.redeem = (req, res, next) => {
     ratingPointsService.getOneByUserProfileId(req.params.profileId)
         .then((response)=> {
           response.points = Number(response.points) - Number(req.body.redeemedPoints)
+            console.log(response.points);
           ratingPointsService.update(response._id, response)
               .then((rsp)=> {res.json(rsp);})
               .catch(err => next(err));
