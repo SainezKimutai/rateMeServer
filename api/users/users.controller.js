@@ -13,10 +13,10 @@ exports.create = (req, res, next) => {
           if (user) {
             if (user.userType === 'customer') {
               customerProfileService.create({userId: user._id, username: req.body.username})
-                  .then(userPrf => {user.userProfileId = userPrf._id; res.json(user)})
+                  .then(userPrf => {user.userProfileId = userPrf._id; res.json(userPrf)})
                   .catch(err => next(err));
             } else {
-                res.json(user)
+                res.json(userProfileId)
             }
           } else {
             res.status(409).json({ message: 'User already Exists' })
