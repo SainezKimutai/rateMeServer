@@ -45,19 +45,10 @@ exports.averageSatRateByCustomer = (req, res, next) => {
         let OrgPrfArr = [];
         FilterOrgProfile.forEach((orgId, i, arr) => {
           let orgRates = rsp.filter((rating) => rating.orgProfileId === orgId).map(e => e);
-            // console.log(orgRates);
           let totalRating = orgRates.reduce((a, b) => a + b.ratingNumber, 0);
             console.log(totalRating);
           let averageRating = (Number(totalRating) / Number(orgRates.length))
             console.log(averageRating);
-          // orgProfileService.getOne(orgId)
-          //     .then(orgPrf => {
-          //       orgPrf.averageRating = averageRating;
-          //       OrgPrfArr.push(orgPrf)
-          //       if (i === arr.length - 1) { res.json(OrgPrfArr) }
-          //     })
-          //     .catch(err => next(err));
-
            OrgPrfArr.push({averageRating: averageRating, orgId})
            if (i === arr.length - 1) { res.json(OrgPrfArr) }
         });
@@ -84,14 +75,7 @@ exports.averageSatRateByOrg = (req, res, next) => {
           let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
           let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
           let averageRating = (Number(totalRating)/ Number(userRates.length));
-          // customerProfileService.getOne(userId)
-          //     .then(userPrf => {
-          //       userPrf.averageRating = averageRating;
-          //       UserProfilesArr.push(userPrf)
-          //       if (i === arr.length - 1) { res.json(UserProfilesArr) }
-          //     })
-          //     .catch(err => console.log(err));
-
+          console.log(averageRating);
           UserProfilesArr.push({averageRating: averageRating})
           if (i === arr.length - 1) { res.json(UserProfilesArr) }
 
@@ -101,7 +85,7 @@ exports.averageSatRateByOrg = (req, res, next) => {
           res.json(rsp)
         }
        })
-      .catch(err => console.log(err));
+      .catch(err => next(err));
 }
 
 
