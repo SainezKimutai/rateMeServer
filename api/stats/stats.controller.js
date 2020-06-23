@@ -75,9 +75,12 @@ exports.averageSatRateByOrg = (req, res, next) => {
           let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
           let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
           let averageRating = (Number(totalRating)/ Number(userRates.length));
-          console.log(averageRating);
-          UserProfilesArr.push({averageRating: averageRating})
-          if (i === arr.length - 1) { res.json(UserProfilesArr) }
+          UserProfilesArr.push({averageRating: averageRating});
+          if (i === arr.length - 1) {
+              let myTotal = UserProfilesArr.reduce((a, b) => a + b.averageRating, 0);
+              res.json({averageRating: myTotal / UserProfilesArr.length});
+              console.log(res.json({averageRating: myTotal / UserProfilesArr.length}))
+          }
 
         });
 
