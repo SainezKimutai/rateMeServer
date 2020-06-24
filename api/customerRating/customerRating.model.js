@@ -9,7 +9,7 @@ const customerRatingSchema = new Schema({
   orgProfileId: String,
   questions: [{
     questionId: String,
-    responses:[{
+    responses: [{
       responseId: String
     }]
   }],
