@@ -19,6 +19,12 @@ exports.getOne = (req, res, next) => {
             .catch(err => next(err));
 };
 
+exports.getProfileByUserId = (req, res, next) => {
+    customerProfileService.getProfileByUserId(req.params.id)
+        .then(rsps => { res.json(rsps); })
+        .catch(err => next(err));
+};
+
 exports.update = (req, res, next) => {
     customerProfileService.update(req.params.id, req.body)
         .then((rsp)=> {res.json(rsp);})

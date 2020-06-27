@@ -1,10 +1,30 @@
 const userService = require('../services/user.service');
 const customerProfileService = require('../services/customerProfile.service');
 
+// exports.login = (req, res, next) => {
+//     userService.authenticate(req.body)
+//         .then(user => user ? res.json(user) : res.status(401).json({ message: 'Email or password is incorrect' }))
+//         .catch(err => next(err));
+//
+// };
+
 exports.login = (req, res, next) => {
     userService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(401).json({ message: 'Email or password is incorrect' }))
+        .then(user => {
+            if (user) {
+                if (user.userType === 'customer') {
+                    customerProfileService.getProfileByUserId(user._id)
+                        .then(userPrf => {res.json(userPrf)})
+                        .catch(err => next(err));
+                } else {
+                    res.json(user)
+                }
+                } else {
+                    res.status(401).json({ message: 'Email or password is incorrect' })
+                }
+            })
         .catch(err => next(err));
+
 };
 
 exports.create = (req, res, next) => {
@@ -16,7 +36,7 @@ exports.create = (req, res, next) => {
                   .then(userPrf => {user.userProfileId = userPrf._id; res.json(userPrf)})
                   .catch(err => next(err));
             } else {
-                res.json(userProfileId)
+                res.json(user)
             }
           } else {
             res.status(409).json({ message: 'User already Exists' })
