@@ -1,7 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const controller = require('./customerRating.controller');
 const router = express.Router();
+
+router.use(bodyParser.json());
 
 router.post('/create', controller.create);
 router.get('/getAll', controller.getAll);

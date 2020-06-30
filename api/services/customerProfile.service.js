@@ -18,6 +18,10 @@ async function getOne(_id) {
     return CustomerProfile.findById(_id);
 }
 
+async function getProfileByUserId(id){
+    return CustomerProfile.find({userId: id});
+}
+
 
 async function update(id, reqParam) {
     reqParam.updatedAt = new Date();
@@ -37,4 +41,4 @@ async function _delete(id) {
     await CustomerProfile.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, delete: _delete, getProfileByUserId };

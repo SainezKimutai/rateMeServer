@@ -36,8 +36,6 @@ exports.mostFrqRatedOrgByCustomer = (req, res, next) => {
 
 
 
-
-
 exports.averageSatRateByCustomer = (req, res, next) => {
   customerRatingService.getAllByCustomer(req.body.userProfileId)
       .then(rsp => {
@@ -47,19 +45,10 @@ exports.averageSatRateByCustomer = (req, res, next) => {
         let OrgPrfArr = [];
         FilterOrgProfile.forEach((orgId, i, arr) => {
           let orgRates = rsp.filter((rating) => rating.orgProfileId === orgId).map(e => e);
-            // console.log(orgRates);
           let totalRating = orgRates.reduce((a, b) => a + b.ratingNumber, 0);
             console.log(totalRating);
           let averageRating = (Number(totalRating) / Number(orgRates.length))
             console.log(averageRating);
-          // orgProfileService.getOne(orgId)
-          //     .then(orgPrf => {
-          //       orgPrf.averageRating = averageRating;
-          //       OrgPrfArr.push(orgPrf)
-          //       if (i === arr.length - 1) { res.json(OrgPrfArr) }
-          //     })
-          //     .catch(err => next(err));
-
            OrgPrfArr.push({averageRating: averageRating, orgId})
            if (i === arr.length - 1) { res.json(OrgPrfArr) }
         });
@@ -86,16 +75,12 @@ exports.averageSatRateByOrg = (req, res, next) => {
           let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
           let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
           let averageRating = (Number(totalRating)/ Number(userRates.length));
-          // customerProfileService.getOne(userId)
-          //     .then(userPrf => {
-          //       userPrf.averageRating = averageRating;
-          //       UserProfilesArr.push(userPrf)
-          //       if (i === arr.length - 1) { res.json(UserProfilesArr) }
-          //     })
-          //     .catch(err => console.log(err));
-
-          UserProfilesArr.push({averageRating: averageRating})
-          if (i === arr.length - 1) { res.json(UserProfilesArr) }
+          UserProfilesArr.push({averageRating: averageRating});
+          if (i === arr.length - 1) {
+              let myTotal = UserProfilesArr.reduce((a, b) => a + b.averageRating, 0);
+              res.json({averageRating: myTotal / UserProfilesArr.length});
+              console.log(res.json({averageRating: myTotal / UserProfilesArr.length}))
+          }
 
         });
 
@@ -103,7 +88,7 @@ exports.averageSatRateByOrg = (req, res, next) => {
           res.json(rsp)
         }
        })
-      .catch(err => console.log(err));
+      .catch(err => next(err));
 }
 
 
@@ -126,7 +111,7 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                           industryService.getOne(indId)
                               .then(indInfo => {
                                 indInfo.ratingTimes = inds.length;
-                                IndustryArr.push(indInfo);
+                                IndustryArr.push(indInfo, indInfo.ratingTimes);
                                 if (i2 === arr2.length - 1) { res.json(IndustryArr) }
                               })
                               .catch(err => next(err));
@@ -142,13 +127,6 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
          })
         .catch(err => next(err));
 };
-
-
-
-
-
-
-
 
 
 exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
@@ -179,9 +157,6 @@ exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
          })
         .catch(err => next(err));
 };
-
-
-
 
 
 

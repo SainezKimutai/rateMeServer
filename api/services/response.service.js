@@ -13,6 +13,9 @@ async function getAll() {
     return await Response.find({});
 }
 
+async function getAllByQuestionId(id) {
+    return await Response.find({questionId: id});
+}
 
 async function getOne(_id) {
     return Response.findById(_id);
@@ -37,4 +40,4 @@ async function _delete(id) {
     await Response.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, update, delete: _delete, getAllByQuestionId};

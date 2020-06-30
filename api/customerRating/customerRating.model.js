@@ -7,9 +7,13 @@ const customerRatingSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   userProfileId: String,
   orgProfileId: String,
-  questionId: String,
-  responseId: String,
-  possibleSolutionId: String,
+  questions: [{
+    questionId: String,
+    responses: [{
+      responseId: String
+    }]
+  }],
+  possibleSolutionId: [],
   ratingNumber: Number,
   ratingState: String,
   createdAt: { type : Date, default: Date.now },
