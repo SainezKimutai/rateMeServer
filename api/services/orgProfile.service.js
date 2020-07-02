@@ -1,9 +1,9 @@
 const OrgProfile = require('../orgProfile/orgProfile.model').OrgProfile;
-const QRCode = require('qrcode');
+const qrcode = require('qrcode-terminal');
 
 async function generateQRCode(name) {
   return new Promise((resolve, reject) => {
-    QRCode.toDataURL(`${name}`, { errorCorrectionLevel: 'H' }, function (err, url) {
+    qrcode.generate(`${name}`, function (err, url) {
       resolve(url);
     })
   })

@@ -19,6 +19,13 @@ exports.getOne = (req, res, next) => {
             .catch(err => next(err));
 };
 
+exports.getOneByUserProfileId = (req, res, next) => {
+    ratingPointsService.getOneByUserProfileId(req.params.id)
+        .then(rsps => { res.json(rsps); })
+        .catch(err => next(err));
+};
+
+
 exports.update = (req, res, next) => {
     ratingPointsService.update(req.params.id, req.body)
         .then((rsp)=> {res.json(rsp);})
