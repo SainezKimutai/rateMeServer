@@ -3,8 +3,9 @@ const qrcode = require('qrcode-terminal');
 
 async function generateQRCode(name) {
   return new Promise((resolve, reject) => {
-    qrcode.generate(`${name}`, function (err, url) {
+    qrcode.generate(`${name}`, { errorCorrectionLevel: 'H' }, function (err, url) {
       resolve(url);
+      reject(err);
     })
   })
 }

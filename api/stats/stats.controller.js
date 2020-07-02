@@ -62,8 +62,6 @@ exports.averageSatRateByCustomer = (req, res, next) => {
 }
 
 
-
-
 exports.averageSatRateByOrg = (req, res, next) => {
   customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
       .then(rsp => {
