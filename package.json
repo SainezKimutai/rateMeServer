@@ -51,7 +51,7 @@
     "isexe": "^2.0.0",
     "isobject": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
-    "kind-of": "^6.0.2",
+    "kind-of": "^6.0.3",
     "lowercase-keys": "^1.0.1",
     "map-cache": "^0.2.2",
     "map-visit": "^1.0.0",
