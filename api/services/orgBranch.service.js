@@ -18,6 +18,10 @@ async function getOne(_id) {
     return OrgBranch.findById(_id);
 }
 
+async function getOneByOrgProfileId(id) {
+    return OrgBranch.findOne({ orgProfileId: id });
+}
+
 
 async function update(id, reqParam) {
     reqParam.updatedAt = new Date();
@@ -37,4 +41,4 @@ async function _delete(id) {
     await OrgBranch.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, getOneByOrgProfileId, update, delete: _delete };

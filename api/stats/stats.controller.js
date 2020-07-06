@@ -216,14 +216,29 @@ exports.totalNumOfRatingByOrg = (req, res, next) => {
 
 
 // This function gets the total of ratingNumber below 50 for every business
-
 exports.totalNumberOfUnpleasantReactionsByOrg = (req,res,next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then( rsp => {
+            if(rsp.length > 0) {
 
+
+            }
+
+            }
+        )
 };
 
 // This function gets the total of ratingNumber from 50 to 100 for every business
-
 exports.totalNumberOfPleasantReactionsByOrg = (req,res,next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then( rsp => {
+                if(rsp.length > 0) {
+
+
+                }
+
+            }
+        )
 
 };
 
