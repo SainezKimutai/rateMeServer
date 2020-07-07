@@ -19,6 +19,12 @@ async function getOne(_id) {
 }
 
 
+async function getAllByOrgProfileId(id) {
+    return OrgBranch.find({ orgProfileId: id });
+}
+
+
+
 async function update(id, reqParam) {
     reqParam.updatedAt = new Date();
     let getReq = await OrgBranch.findById(id);
@@ -37,4 +43,4 @@ async function _delete(id) {
     await OrgBranch.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getAllByOrgProfileId, getOne, update, delete: _delete };

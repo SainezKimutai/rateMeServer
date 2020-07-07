@@ -9,6 +9,7 @@ async function generateQRCode(name) {
   })
 }
 
+
 async function create (reqParam){
       generateQRCode(reqParam.industryId).then((url)=> {
           reqParam.qrCode = url;

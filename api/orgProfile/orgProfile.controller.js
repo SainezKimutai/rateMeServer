@@ -3,14 +3,29 @@ const orgProfileService = require('../services/orgProfile.service');
 
 exports.create = (req, res, next) => {
     orgProfileService.create(req.body)
-        .then(rsp => {
-          orgProfileService.generateQRCode(rsp._id).then((url)=> {
-            orgProfileService.update(rsp._id, {qrCode : url})
-                .then((rsp)=> {res.json(rsp);})
-                .catch(err => next(err));
-          })
-        })
+        .then(rsp => res.json(rsp))
         .catch(err => next(err));
+};
+
+// exports.create = (req, res, next) => {
+//     orgProfileService.create(req.body)
+//         .then(rsp => {
+//           orgProfileService.generateQRCode(rsp._id).then((url)=> {
+//             orgProfileService.update(rsp._id, {qrCode : url})
+//                 .then((rsp)=> {res.json(rsp);})
+//                 .catch(err => next(err));
+//           })
+//         })
+//         .catch(err => next(err));
+// };
+
+exports.generateQRCode = (req, res, next) => {
+    orgProfileService.generateQRCode(rsp._id).then( (url)=>{
+        orgProfileService.update(rsp._id, {qrCode: url})
+            .then((rsp)=> {res.json(rsp);})
+            .catch(err => next(err));
+            })
+            .catch(err => next(err));
 };
 
 

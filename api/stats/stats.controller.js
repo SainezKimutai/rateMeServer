@@ -62,8 +62,6 @@ exports.averageSatRateByCustomer = (req, res, next) => {
 }
 
 
-
-
 exports.averageSatRateByOrg = (req, res, next) => {
   customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
       .then(rsp => {
@@ -92,7 +90,6 @@ exports.averageSatRateByOrg = (req, res, next) => {
 }
 
 
-
 exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
     customerRatingService.getAllByCustomer(req.body.userProfileId)
         .then(rsp => {
@@ -111,7 +108,8 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                           industryService.getOne(indId)
                               .then(indInfo => {
                                 indInfo.ratingTimes = inds.length;
-                                IndustryArr.push(indInfo, indInfo.ratingTimes);
+                                let frequencyOfRating = indInfo.ratingTimes;
+                                IndustryArr.push(indInfo, frequencyOfRating);
                                 if (i2 === arr2.length - 1) { res.json(IndustryArr) }
                               })
                               .catch(err => next(err));
@@ -207,3 +205,71 @@ exports.totalNumOfRatingByOrg = (req, res, next) => {
          })
         .catch(err => next(err));
 };
+
+exports.totalNumOfRatingByOrg = (req, res, next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then(rsp => {
+            res.json({totalNumberOfRating: rsp.length});
+        })
+        .catch(err => next(err));
+};
+
+
+// This function gets the total of ratingNumber below 50 for every business
+exports.totalNumberOfUnpleasantReactionsByOrg = (req,res,next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then( rsp => {
+            if(rsp.length > 0) {
+
+
+            }
+
+            }
+        )
+};
+
+// This function gets the total of ratingNumber from 50 to 100 for every business
+exports.totalNumberOfPleasantReactionsByOrg = (req,res,next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then( rsp => {
+                if(rsp.length > 0) {
+
+
+                }
+
+            }
+        )
+
+};
+
+
+
+// This function gets the age of the customers who have rated a certain business and gets the average age
+
+exports.getAvgCustomerAge = (req,res,next) => {
+    
+
+};
+
+
+// This function gets the all the questions and responses (issues) from the customer ratings
+// The totals of issues raised are calculated and displayed on a stacked bar chart
+
+exports.topIssuesByOrg = (req,res,next) => {
+
+
+
+
+};
+
+
+// This function gets the top 3 raters for every org.
+// Should contain their email, logo, avg sat rate and most freq selected emoji
+exports.topRaters = (req,res,next) => {
+
+
+};
+
+
+
+
