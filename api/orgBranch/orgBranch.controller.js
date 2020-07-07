@@ -19,12 +19,12 @@ exports.getOne = (req, res, next) => {
             .catch(err => next(err));
 };
 
-exports.getOneByOrgProfileId = (param, res, next) => {
-    orgBranchService.getOneByOrgProfileId(param.orgProfileId)
+
+exports.getAllByOrgProfileId = (req, res, next) => {
+    orgBranchService.getAllByOrgProfileId(req.params.id)
         .then(rsps => { res.json(rsps);  })
         .catch(err => next(err));
 };
-
 
 exports.update = (req, res, next) => {
     orgBranchService.update(req.params.id, req.body)
