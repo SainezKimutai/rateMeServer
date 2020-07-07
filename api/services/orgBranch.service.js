@@ -1,5 +1,13 @@
 const OrgBranch = require('../orgBranch/orgBranch.model').OrgBranch;
+const QRCode = require('qrcode');
 
+async function generateQRCode(name) {
+  return new Promise((resolve, reject) => {
+    QRCode.toDataURL(`${name}`, { errorCorrectionLevel: 'H' }, function (err, url) {
+      resolve(url);
+    })
+  })
+}
 
 async function create(reqParam){
     let newReq = new OrgBranch(reqParam);
@@ -43,4 +51,4 @@ async function _delete(id) {
     await OrgBranch.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getAllByOrgProfileId, getOne, update, delete: _delete };
+module.exports = { create, getAll, getAllByOrgProfileId, generateQRCode, getOne, update, delete: _delete };

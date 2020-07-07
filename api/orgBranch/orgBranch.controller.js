@@ -3,7 +3,15 @@ const orgBranchService = require('../services/orgBranch.service');
 
 exports.create = (req, res, next) => {
     orgBranchService.create(req.body)
-        .then(rsp => res.json(rsp))
+        .then(orgBranch => {
+          orgBranchService.generateQRCode(orgBranch._id)
+          .then(url => {
+            orgBranch.qrCode = url;
+            orgBranchService.update(orgBranch._id, orgBranch)
+                .then((rsp)=> {res.json(rsp);})
+                .catch(err => next(err));
+          })
+        })
         .catch(err => next(err));
 };
 

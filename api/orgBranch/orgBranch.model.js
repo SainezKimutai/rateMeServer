@@ -7,6 +7,7 @@ const orgBranchSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   orgProfileId: String,
   branchName: String,
+  qrCode: { type: Schema.Types.Mixed },
   location: String,
   createdAt: { type : Date, default: Date.now },
   updatedAt: { type : Date, default: Date.now }
