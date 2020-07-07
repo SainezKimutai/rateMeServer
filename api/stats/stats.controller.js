@@ -170,6 +170,7 @@ exports.mostFrqSelectedEmojiByOrg = (req, res, next) => {
         let maxCount = Math.max(...Object.values(counts));
         let mostFrequentEmoji = Object.keys(counts).filter(k => counts[k] === maxCount);
         let EmojiInfoArr = [];
+        console.log(mostFrequentEmoji)
         mostFrequentEmoji.forEach((emojiName, i, arr) => {
             let emojiRates = rsp.filter((rating) => rating.ratingState === emojiName).map(e => e);
             emojiService.getOneByName(emojiName)
@@ -247,7 +248,7 @@ exports.totalNumberOfPleasantReactionsByOrg = (req,res,next) => {
 // This function gets the age of the customers who have rated a certain business and gets the average age
 
 exports.getAvgCustomerAge = (req,res,next) => {
-    
+
 
 };
 
@@ -269,7 +270,3 @@ exports.topRaters = (req,res,next) => {
 
 
 };
-
-
-
-
