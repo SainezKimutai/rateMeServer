@@ -170,10 +170,9 @@ exports.mostFrqSelectedEmojiByOrg = (req, res, next) => {
         let maxCount = Math.max(...Object.values(counts));
         let mostFrequentEmoji = Object.keys(counts).filter(k => counts[k] === maxCount);
         let EmojiInfoArr = [];
-        console.log(mostFrequentEmoji)
-        mostFrequentEmoji.forEach((emojiName, i, arr) => {
-            let emojiRates = rsp.filter((rating) => rating.ratingState === emojiName).map(e => e);
-            emojiService.getOneByName(emojiName)
+        mostFrequentEmoji.forEach((emojiId, i, arr) => {
+            let emojiRates = rsp.filter((rating) => rating.ratingState === emojiId).map(e => e);
+            emojiService.getOne(emojiId)
                 .then(emojiRsp => {
                   emojiRsp.ratingTimes = emojiRates.length;
                   EmojiInfoArr.push(emojiRsp);
