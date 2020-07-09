@@ -45,15 +45,15 @@ exports.getAllByCustomer = (req, res, next) => {
         .catch(err => next(err));
 };
 
-exports.getOneByUserProfileId = (param, res, next) => {
-    customerRatingService.getOneByUserProfileId(param.userProfileId)
+
+exports.getAllByOrgProfile = (req, res, next) => {
+    customerRatingService.getAllByOrgProfile(req.params.id)
         .then(rsps => { res.json(rsps);  })
         .catch(err => next(err));
 };
 
-
-exports.getAllByOrgProfile = (req, res, next) => {
-    customerRatingService.getAllByOrgProfile(req.params.id)
+exports.getAllByOrgBranch = (req, res, next) => {
+    customerRatingService.getAllByOrgBranch(req.params.id)
         .then(rsps => { res.json(rsps);  })
         .catch(err => next(err));
 };

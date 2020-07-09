@@ -37,6 +37,7 @@ exports.create = (req, res, next) => {
                   .catch(err => next(err));
             } else {
                 res.json(user)
+                console.log(user)
             }
           } else {
             res.status(409).json({ message: 'User already Exists' })

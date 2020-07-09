@@ -22,12 +22,12 @@ async function getAllByCustomer(id) {
     return await CustomerRating.find({userProfileId: id});
 }
 
-async function getOneByUserProfileId(id) {
-    return CustomerRating.findOne({ userProfileId: id });
-}
-
 async function getAllByOrgProfile(id) {
     return await CustomerRating.find({orgProfileId: id});
+}
+
+async function getAllByOrgBranch(id) {
+    return  await CustomerRating.find({orgBranchId: id});
 }
 
 async function update(id, reqParam) {
@@ -48,4 +48,5 @@ async function _delete(id) {
     await CustomerRating.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, getAllByCustomer, getOneByUserProfileId, getAllByOrgProfile, delete: _delete };
+module.exports = { create, getAll, getOne, update, getAllByCustomer,
+    getAllByOrgProfile, getAllByOrgBranch, delete: _delete };

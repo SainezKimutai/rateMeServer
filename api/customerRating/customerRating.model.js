@@ -7,6 +7,7 @@ const customerRatingSchema = new Schema({
   _id: { type: Schema.Types.ObjectId, auto: true },
   userProfileId: String,
   orgProfileId: String,
+  orgBranchId: String,
   questions: [{
     questionId: String,
     responses: [{

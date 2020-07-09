@@ -10,6 +10,13 @@ router.post('/mostFrqRatedIndustryByCustomer', controller.mostFrqRatedIndustryBy
 router.post('/mostFrqSelectedEmojiByCustomer', controller.mostFrqSelectedEmojiByCustomer); // pass { userProfileId: '' }
 router.post('/mostFrqSelectedEmojiByOrg', controller.mostFrqSelectedEmojiByOrg); // pass { orgProfileId: '' }
 router.post('/totalNumOfRatingByCustomer', controller.totalNumOfRatingByCustomer); // pass { userProfileId: '' }
-router.post('/totalNumOfRatingByOrg', controller.totalNumOfRatingByOrg); // pass { orgProfileId: '' }
+router.post('/totalNumOfRatingByOrg', controller.totalNumOfRatingByOrg);
+router.post('/averageSatRateByOrgBranch', controller.averageSatRateByOrgBranch);
+router.post('/mostFreqSelectedEmojiByOrgBranch', controller.mostFreqSelectedEmojiByOrgBranch);// pass { orgProfileId: '' }
+router.post('/totalNumOfRatingByOrgBranch', controller.totalNumberOfRatingsByOrgBranch);
+
+
+
+
 
 module.exports = router;

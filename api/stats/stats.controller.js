@@ -46,10 +46,8 @@ exports.averageSatRateByCustomer = (req, res, next) => {
         FilterOrgProfile.forEach((orgId, i, arr) => {
           let orgRates = rsp.filter((rating) => rating.orgProfileId === orgId).map(e => e);
           let totalRating = orgRates.reduce((a, b) => a + b.ratingNumber, 0);
-            console.log(totalRating);
           let averageRating = (Number(totalRating) / Number(orgRates.length))
-            console.log(averageRating);
-           OrgPrfArr.push({averageRating: averageRating, orgId})
+           OrgPrfArr.push({averageRating: averageRating, orgProfileId: orgId})
            if (i === arr.length - 1) { res.json(OrgPrfArr) }
         });
 
@@ -108,8 +106,7 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                           industryService.getOne(indId)
                               .then(indInfo => {
                                 indInfo.ratingTimes = inds.length;
-                                let frequencyOfRating = indInfo.ratingTimes;
-                                IndustryArr.push(indInfo, frequencyOfRating);
+                                IndustryArr.push({industryName: indInfo.industryName, frequencyOfRating: indInfo.ratingTimes});
                                 if (i2 === arr2.length - 1) { res.json(IndustryArr) }
                               })
                               .catch(err => next(err));
@@ -133,22 +130,23 @@ exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
           if (rsp.length > 0) {
           const EmojiNameArray = rsp.map(e => e.ratingState);
           let counts = EmojiNameArray.reduce((a, c) => {
-            a[c] = (a[c] || 0) + 1;
+              a[c] = (a[c] || 0) + 1;
             return a;
           }, {});
           let maxCount = Math.max(...Object.values(counts));
           let mostFrequentEmoji = Object.keys(counts).filter(k => counts[k] === maxCount);
           let EmojiInfoArr = [];
+          let OrgProfArr = [];
           mostFrequentEmoji.forEach((emojiName, i, arr) => {
-              let emojiRates = rsp.filter((rating) => rating.ratingState === emojiName).map(e => e);
-              emojiService.getOneByName(emojiName)
-                  .then(emojiRsp => {
-                    emojiRsp.ratingTimes = emojiRates.length;
-                    EmojiInfoArr.push(emojiRsp);
-                    if (i === arr.length - 1) { res.json(EmojiInfoArr) }
-                  })
-                  .catch(err => next(err));
-            });
+          let emojiRates = rsp.filter((rating) => rating.ratingState === emojiName).map(e => e);
+          emojiService.getOneByName(emojiName)
+              .then(emojiRsp => {
+                emojiRsp.ratingTimes = emojiRates.length;
+                EmojiInfoArr.push(emojiRsp);
+                if (i === arr.length - 1) { res.json(EmojiInfoArr) }
+              })
+              .catch(err => next(err));
+        });
           } else {
             res.json(rsp)
           }
@@ -243,15 +241,6 @@ exports.totalNumberOfPleasantReactionsByOrg = (req,res,next) => {
 };
 
 
-
-// This function gets the age of the customers who have rated a certain business and gets the average age
-
-exports.getAvgCustomerAge = (req,res,next) => {
-
-
-};
-
-
 // This function gets the all the questions and responses (issues) from the customer ratings
 // The totals of issues raised are calculated and displayed on a stacked bar chart
 
@@ -262,10 +251,98 @@ exports.topIssuesByOrg = (req,res,next) => {
 
 };
 
-
 // This function gets the top 3 raters for every org.
 // Should contain their email, logo, avg sat rate and most freq selected emoji
-exports.topRaters = (req,res,next) => {
+exports.topRatersByOrg = (req,res,next) => {
+
+
+};
+
+
+exports.totalNumberOfRatingsByOrgBranch = (req, res, next) => {
+    customerRatingService.getAllByOrgBranch(req.body.orgBranchId)
+        .then(rsp => {
+            res.json({totalNumberOfRating: rsp.length});
+        })
+        .catch(err => next(err));
+};
+
+
+
+exports.averageSatRateByOrgBranch = (req, res, next) => {
+    customerRatingService.getAllByOrgBranch(req.body.orgBranchId)
+        .then(rsp => {
+            if (rsp.length > 0) {
+                const userProfileArray = rsp.map(e => e.userProfileId);
+                let FilterUserProfile =  Array.from( new Set(userProfileArray));
+                let UserProfilesArr = [];
+                FilterUserProfile.forEach((userId, i, arr) => {
+                    let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
+                    let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
+                    let averageRating = (Number(totalRating)/ Number(userRates.length));
+                    UserProfilesArr.push({averageRating: averageRating});
+                    if (i === arr.length - 1) {
+                        let myTotal = UserProfilesArr.reduce((a, b) => a + b.averageRating, 0);
+                        res.json({averageRating: myTotal / UserProfilesArr.length});
+                        console.log(res.json({averageRating: myTotal / UserProfilesArr.length}))
+                    }
+
+                });
+
+            } else {
+                res.json(rsp)
+            }
+        })
+        .catch(err => next(err));
+}
+
+
+
+exports.mostFreqSelectedEmojiByOrgBranch = (req,res,next) => {
+    customerRatingService.getAllByOrgBranch(req.body.orgBranchId)
+        .then(rsp => {
+            if (rsp.length > 0) {
+                const EmojiNameArray = rsp.map(e => e.ratingState);
+                let counts = EmojiNameArray.reduce((a, c) => {
+                    a[c] = (a[c] || 0) + 1;
+                    return a;
+                }, {});
+                let maxCount = Math.max(...Object.values(counts));
+                let mostFrequentEmoji = Object.keys(counts).filter(k => counts[k] === maxCount);
+                let EmojiInfoArr = [];
+                mostFrequentEmoji.forEach((emojiId, i, arr) => {
+                    let emojiRates = rsp.filter((rating) => rating.ratingState === emojiId).map(e => e);
+                    emojiService.getOne(emojiId)
+                        .then(emojiRsp => {
+                            emojiRsp.ratingTimes = emojiRates.length;
+                            EmojiInfoArr.push(emojiRsp);
+                            if (i === arr.length - 1) { res.json(EmojiInfoArr) }
+                        })
+                        .catch(err => next(err));
+                });
+            } else {
+                res.json(rsp)
+            }
+        })
+        .catch(err => next(err));
+};
+
+
+// This function gets the age of the customers who have rated a certain business and gets the average age
+
+exports.topIssuesByOrgBranch = (req,res,next) => {
+
+
+
+};
+
+
+
+
+
+// This function gets the age of the customers who have rated a certain business and gets the average age
+
+exports.getAvgCustomerAge = (req,res,next) => {
 
 
 };
