@@ -264,9 +264,9 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
-                  if (Number(x) === arrx.length - 1) {
-                    res.json(issues)
-                  }
+
+                  res.json(issues)
+
                 })
                 .catch(err => next(err));
             });
