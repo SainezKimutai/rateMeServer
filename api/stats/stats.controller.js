@@ -431,7 +431,7 @@ exports.topIssuesByOrgBranch = (req,res,next) => {
           branches.forEach((branch, i, arr) => {
             customerRatingService.getAllByOrgBranch(branch._id)
                 .then(rsps => {
-                  allIssues.concat(getToIssuesByBranch(rsps, branch))
+                  AllIssues.concat(getToIssuesByBranch(rsps, branch))
                   if (i === arr.length - 1) {
                     res.json(allIssues)
                   }
