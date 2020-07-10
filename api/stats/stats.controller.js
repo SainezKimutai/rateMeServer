@@ -255,7 +255,7 @@ exports.topIssuesByOrg = (req,res,next) => {
         rsp.forEach((resp, i, arr) => {
           resp.questions.forEach((respQuiz, i2, arr2) => {
             console.log(respQuiz);
-            respQuiz.responses.forEach((respRes, i3, arr2) => {
+            respQuiz.responses.forEach((respRes, i3, arr3) => {
               responseService.getOne(respRes.responseId)
                 .then(respns => {
                   let obj = {
