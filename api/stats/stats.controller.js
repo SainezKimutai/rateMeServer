@@ -256,10 +256,10 @@ exports.topIssuesByOrg = (req,res,next) => {
           resp.questions.forEach((respQuiz, i2, arr2) => {
             console.log(respQuiz);
             respQuiz.responses.forEach((respRes, i3, arr2) => {
-              responseService.getOne(respRes)
+              responseService.getOne(respRes.responseId)
                 .then(respns => {
                   let obj = {
-                    responseId: respRes,
+                    responseId: respRes.responseId,
                     response: respns.response,
                     data: resp.updatedAt
                   }
