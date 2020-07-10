@@ -263,8 +263,9 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
-                  console.log(issues);
+
                   if (i === arr.length - 1) {
+                    console.log(issues);
                     res.json(issues)
                   }
                 })
