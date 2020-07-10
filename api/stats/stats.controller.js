@@ -256,7 +256,7 @@ exports.topIssuesByOrg = (req,res,next) => {
           resp.questions.forEach((respQuiz, y, arry) => {
             console.log(`index ${y} if ${arry.length - 1}`);
             respQuiz.responses.forEach((respRes, m, arrm) => {
-                console.log(`index ${im} if ${arrm.length - 1}`);
+                console.log(`index ${m} if ${arrm.length - 1}`);
               responseService.getOne(respRes.responseId)
                 .then(respns => {
                   let obj = {
