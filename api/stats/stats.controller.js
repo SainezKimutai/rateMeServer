@@ -252,7 +252,7 @@ exports.topIssuesByOrg = (req,res,next) => {
   .then(rsp => {
       if(rsp.length > 0) {
         let issues = []
-        rsp.forEach((resp, i, arr) => {
+        rsp.forEach((resp, x, arrx) => {
           resp.questions.forEach((respQuiz, i2, arr2) => {
             respQuiz.responses.forEach((respRes, i3, arr3) => {
               responseService.getOne(respRes.responseId)
@@ -263,7 +263,7 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
-                  console.log(`index ${i} if ${arr.length - 1}`);
+                  console.log(`index ${x} if ${arrx.length - 1}`);
                   if (i === arr.length - 1) {
 
                     res.json(issues)
