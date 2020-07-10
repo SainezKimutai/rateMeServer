@@ -27,6 +27,7 @@ exports.login = (req, res, next) => {
 
 };
 
+
 exports.create = (req, res, next) => {
     userService.create(req.body)
         .then(user => {
