@@ -263,14 +263,15 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
+                  console.log(`index ${i} if ${arr.length - 1}`);
+                  if (i === arr.length - 1) {
+
+                    res.json(issues)
+                  }
                 })
                 .catch(err => next(err));
             });
           });
-          if (i === arr.length - 1) {
-            console.log(issues);
-            res.json(issues)
-          }
         });
       } else {res.json([]) }
       }
