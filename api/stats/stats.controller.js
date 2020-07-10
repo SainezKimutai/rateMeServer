@@ -254,7 +254,6 @@ exports.topIssuesByOrg = (req,res,next) => {
         let issues = []
         rsp.forEach((resp, i, arr) => {
           resp.questions.forEach((respQuiz, i2, arr2) => {
-            console.log(respQuiz);
             respQuiz.responses.forEach((respRes, i3, arr3) => {
               responseService.getOne(respRes.responseId)
                 .then(respns => {
@@ -264,6 +263,7 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
+                  console.log(issues);
                   if (i === arr.length - 1) {
                     res.json(issues)
                   }
