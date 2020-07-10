@@ -254,9 +254,9 @@ exports.topIssuesByOrg = (req,res,next) => {
         let issues = []
         rsp.forEach((resp, x, arrx) => {
           resp.questions.forEach((respQuiz, y, arry) => {
-            console.log(`index ${y} if ${arry.length - 1}`);
+            // console.log(`index ${y} if ${arry.length - 1}`);
             respQuiz.responses.forEach((respRes, m, arrm) => {
-                // console.log(`index ${m} if ${arrm.length - 1}`);
+                console.log(`index ${m} if ${arrm.length - 1}`);
               responseService.getOne(respRes.responseId)
                 .then(respns => {
                   let obj = {
