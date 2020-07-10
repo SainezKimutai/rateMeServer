@@ -433,7 +433,7 @@ exports.topIssuesByOrgBranch = (req,res,next) => {
                 .then(rsps => {
                   AllIssues.concat(getToIssuesByBranch(rsps, branch))
                   if (i === arr.length - 1) {
-                    res.json(allIssues)
+                    res.json(AllIssues)
                   }
                  })
                 .catch(err => next(err));
