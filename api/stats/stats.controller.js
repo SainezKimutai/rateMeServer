@@ -443,14 +443,3 @@ exports.topIssuesByOrgBranch = (req,res,next) => {
       .catch(err => next(err));
 
 };
-
-
-
-
-
-// This function gets the age of the customers who have rated a certain business and gets the average age
-
-exports.getAvgCustomerAge = (req,res,next) => {
-
-
-};

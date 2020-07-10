@@ -14,6 +14,13 @@ router.post('/totalNumOfRatingByOrg', controller.totalNumOfRatingByOrg);
 router.post('/averageSatRateByOrgBranch', controller.averageSatRateByOrgBranch);
 router.post('/mostFreqSelectedEmojiByOrgBranch', controller.mostFreqSelectedEmojiByOrgBranch);// pass { orgProfileId: '' }
 router.post('/totalNumOfRatingByOrgBranch', controller.totalNumberOfRatingsByOrgBranch);
+router.post('/totalNumberOfUnpleasantReactionsByOrg', controller.totalNumberOfUnpleasantReactionsByOrg);
+router.post('/totalNumberOfPleasantReactionsByOrg', controller.totalNumberOfPleasantReactionsByOrg);
+router.post('/gettOpRatersByOrg', controller.gettOpRatersByOrg);
+router.post('/topRatersByOrg', controller.topRatersByOrg);
+router.post('/topIssuesByOrg', controller.topIssuesByOrg);
+router.post('/topIssuesByOrgBranch', controller.topIssuesByOrgBranch);
+
 
 
 
