@@ -264,9 +264,11 @@ exports.topIssuesByOrg = (req,res,next) => {
                     data: resp.updatedAt
                   }
                   issues.push(obj)
-                  if (x === arrx.length - 1 && y === arry.length - 1 && m === arrm.length - 1) {
-                    console.log('Heeeyeyyeyye');
-                    res.json(issues)
+                  if (x === arrx.length - 1) {
+                    setTimeout(() => {
+                        res.json(issues)
+                    }, 2000)
+
                   }
                 })
                 .catch(err => next(err));
