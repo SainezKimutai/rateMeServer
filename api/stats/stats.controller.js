@@ -121,6 +121,41 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
         .catch(err => next(err));
 };
 
+exports.ratersByOrg = (req, res, next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then(rsp => {
+            if (rsp.length > 0) {
+                const CustomerProfileArray = rsp.map(e => e.userProfileId);
+                let CustomerIdsArray = [];
+                CustomerProfileArray.forEach((profileId, i, arr) => {
+                    customerProfileService.getOne(profileId)
+                        .then(cusPrfRsp => {
+                            CustomerIdsArray.push(cusPrfRsp.userProfileId);
+                            if (i === arr.length - 1){
+                                let FilterCustomerIdsArray =  Array.from( new Set(CustomerIdsArray));
+                                let CustomerArr = [];
+                                FilterCustomerIdsArray.forEach((custId, i2, arr2) => {
+                                    let custs = CustomerArr.filter((id) => id === custId).map(e => e);
+                                    customerProfileService.getOne(custId)
+                                        .then(cusInfo => {
+                                            cusInfo.ratingTimes = custs.length;
+                                            CustomerArr.push({username: cusInfo.username, frequencyOfRating: cusInfo.ratingTimes});
+                                            if (i2 === arr2.length - 1) { res.json(CustomerArr) }
+                                        })
+                                        .catch(err => next(err));
+                                });
+                            }
+                        })
+                        .catch(err => next(err));
+                });
+            } else {
+                res.json(rsp)
+            }
+        })
+        .catch(err => next(err));
+};
+
+
 
 exports.mostFrqSelectedEmojiByCustomer = (req, res, next) => {
     customerRatingService.getAllByCustomer(req.body.userProfileId)
@@ -272,6 +307,42 @@ exports.topIssuesByOrg = (req,res,next) => {
 };
 
 
+exports.complimentByOrg = (req,res,next) => {
+    customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
+        .then(rsp => {
+                if(rsp.length > 0) {
+                    if (rsp.filter((r) => Number(r.ratingNumber) === 100).map(e => e)) {
+                        let issues = [];
+                        rsp.forEach((resp, x, arrx) => {
+                            resp.questions.forEach((respQuiz, y, arry) => {
+                                respQuiz.responses.forEach((respRes, m, arrm) => {
+                                    responseService.getOne(respRes.responseId)
+                                        .then(respns => {
+                                            let obj = {
+                                                responseId: respRes.responseId,
+                                                response: respns.response,
+                                                data: resp.updatedAt
+                                            };
+                                            issues.push(obj);
+
+                                            res.json(issues)
+
+                                        })
+                                        .catch(err => next(err));
+                                });
+                            });
+                        });
+                    } else {
+                        res.json([])
+                    }
+                }
+            }
+        )
+        .catch(err => next(err));
+};
+
+
+
 
 function gettOpRatersByOrg(userArr) {
   userformated = []
@@ -302,7 +373,7 @@ exports.topRatersByOrg = (req,res,next) => {
   customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
   .then(responses => {
     let userIds = responses.map(e => e.userProfileId )
-    let userArr = []
+    let userArr = [];
     userIds.forEach((itemId, i, arr) => {
       let myRes = responses.filter((f) => f.userProfileId === itemId).map(e => e);
       userArr.push({userProfId: itemId, number: myRes.length })
