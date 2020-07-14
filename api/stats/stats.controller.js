@@ -39,7 +39,6 @@ exports.mostFrqRatedOrgByCustomer = (req, res, next) => {
 };
 
 
-
 exports.averageSatRateByCustomer = (req, res, next) => {
   customerRatingService.getAllByCustomer(req.body.userProfileId)
       .then(rsp => {
@@ -54,7 +53,6 @@ exports.averageSatRateByCustomer = (req, res, next) => {
            OrgPrfArr.push({averageRating: averageRating, orgProfileId: orgId})
            if (i === arr.length - 1) { res.json(OrgPrfArr) }
         });
-
         } else {
           res.json(rsp)
             // console.log(res.json(rsp))
@@ -81,16 +79,13 @@ exports.averageSatRateByOrg = (req, res, next) => {
               res.json({averageRating: myTotal / UserProfilesArr.length});
               console.log(res.json({averageRating: myTotal / UserProfilesArr.length}))
           }
-
         });
-
         } else {
           res.json(rsp)
         }
        })
       .catch(err => next(err));
 }
-
 
 exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
     customerRatingService.getAllByCustomer(req.body.userProfileId)
@@ -115,7 +110,6 @@ exports.mostFrqRatedIndustryByCustomer = (req, res, next) => {
                               })
                               .catch(err => next(err));
                         });
-
                     }
                   })
                   .catch(err => next(err));
@@ -235,9 +229,9 @@ exports.totalNumberOfPleasantReactionsByOrg = (req,res,next) => {
     customerRatingService.getAllByOrgProfile(req.body.orgProfileId)
     .then(rsp => {
         if(rsp.length > 0) {
-          let unpleasantRating = rsp.filter((r) => Number(r.ratingNumber) > 49 ).map(e => e)
-          res.json({totalNumberOfUnpleasantReactions: unpleasantRating.length})
-        } else {res.json({totalNumberOfUnpleasantReactions: 0}) }
+          let pleasantRating = rsp.filter((r) => Number(r.ratingNumber) > 49 ).map(e => e)
+          res.json({totalNumberOfPleasantReactions: pleasantRating.length})
+        } else {res.json({totalNumberOfPleasantReactions: 0}) }
         }
     )
     .catch(err => next(err));
@@ -255,7 +249,6 @@ exports.topIssuesByOrg = (req,res,next) => {
         rsp.forEach((resp, x, arrx) => {
           resp.questions.forEach((respQuiz, y, arry) => {
             respQuiz.responses.forEach((respRes, m, arrm) => {
-
               responseService.getOne(respRes.responseId)
                 .then(respns => {
                   let obj = {
@@ -322,8 +315,6 @@ exports.topRatersByOrg = (req,res,next) => {
 };
 
 
-
-
 exports.totalNumberOfRatingsByOrgBranch = (req, res, next) => {
     customerRatingService.getAllByOrgBranch(req.body.orgBranchId)
       .then(rsp => {
@@ -333,34 +324,30 @@ exports.totalNumberOfRatingsByOrgBranch = (req, res, next) => {
 };
 
 
-
 exports.averageSatRateByOrgBranch = (req, res, next) => {
     customerRatingService.getAllByOrgBranch(req.body.orgBranchId)
         .then(rsp => {
             if (rsp.length > 0) {
-                const userProfileArray = rsp.map(e => e.userProfileId);
-                let FilterUserProfile =  Array.from( new Set(userProfileArray));
-                let UserProfilesArr = [];
-                FilterUserProfile.forEach((userId, i, arr) => {
-                    let userRates = rsp.filter((rating) => rating.userProfileId === userId).map(e => e);
-                    let totalRating = userRates.reduce((a, b) => a + b.ratingNumber, 0);
-                    let averageRating = (Number(totalRating)/ Number(userRates.length));
-                    UserProfilesArr.push({averageRating: averageRating});
+                const orgBranchProfileArray = rsp.map(e => e.orgBranchId);
+                let FilterUserProfile =  Array.from( new Set(orgBranchProfileArray));
+                let OrgBranchProfilesArr = [];
+                FilterUserProfile.forEach((orgBranchId, i, arr) => {
+                    let orgRates = rsp.filter((rating) => rating.orgBranchId === orgBranchId).map(e => e);
+                    let totalRating = orgRates.reduce((a, b) => a + b.ratingNumber, 0);
+                    let averageRating = (Number(totalRating)/ Number(orgRates.length));
+                    OrgBranchProfilesArr.push({averageRating: averageRating, orgBranchId: orgBranchId});
                     if (i === arr.length - 1) {
-                        let myTotal = UserProfilesArr.reduce((a, b) => a + b.averageRating, 0);
-                        res.json({averageRating: myTotal / UserProfilesArr.length});
-                        console.log(res.json({averageRating: myTotal / UserProfilesArr.length}))
+                        let myTotal = OrgBranchProfilesArr.reduce((a, b) => a + b.averageRating, 0);
+                        res.json({averageRating: myTotal / OrgBranchProfilesArr.length, orgBranchId: orgBranchId});
+                        console.log(res.json({averageRating: myTotal / OrgBranchProfilesArr.length}))
                     }
-
                 });
-
             } else {
                 res.json(rsp)
             }
         })
         .catch(err => next(err));
 }
-
 
 
 exports.mostFreqSelectedEmojiByOrgBranch = (req,res,next) => {
@@ -393,9 +380,8 @@ exports.mostFreqSelectedEmojiByOrgBranch = (req,res,next) => {
 };
 
 
-
 function getToIssuesByBranch(rsp, branch) {
-  let issues = []
+  let issues = [];
   rsp.forEach((resp, i, arr) => {
     resp.questions.forEach((respQuiz, i2, arr2) => {
       respQuiz.responses.forEach((respRes, i3, arr2) => {
@@ -407,8 +393,8 @@ function getToIssuesByBranch(rsp, branch) {
               responseId: respRes,
               response: respns.response,
               data: resp.updatedAt
-            }
-            issues.push(obj)
+            };
+            issues.push(obj);
             if (i === arr.length - 1 && i2 === arr2.length - 1 && i3 === arr3.length - 1) {
               return issues
             }
@@ -419,16 +405,11 @@ function getToIssuesByBranch(rsp, branch) {
   });
 }
 
-
-
-// This function gets the age of the customers who have rated a certain business and gets the average age
-
 exports.topIssuesByOrgBranch = (req,res,next) => {
-
   orgBranchService.getAllByOrgProfileId(req.body.orgProfileId)
       .then(branches => {
         if (branches.length > 0) {
-          let AllIssues = []
+          let AllIssues = [];
           branches.forEach((branch, i, arr) => {
             customerRatingService.getAllByOrgBranch(branch._id)
                 .then(rsps => {
@@ -444,3 +425,5 @@ exports.topIssuesByOrgBranch = (req,res,next) => {
       .catch(err => next(err));
 
 };
+
+

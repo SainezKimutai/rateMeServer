@@ -18,8 +18,7 @@ router.post('/totalNumberOfUnpleasantReactionsByOrg', controller.totalNumberOfUn
 router.post('/totalNumberOfPleasantReactionsByOrg', controller.totalNumberOfPleasantReactionsByOrg);
 router.post('/topIssuesByOrg', controller.topIssuesByOrg);
 router.post('/topIssuesByOrgBranch', controller.topIssuesByOrgBranch);
-
-
+router.post('/topRatersByOrg', controller.topRatersByOrg);
 
 
 
